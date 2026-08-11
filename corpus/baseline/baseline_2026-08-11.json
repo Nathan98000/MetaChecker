@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-08-11T16:40:24.560656+00:00",
+  "run_at": "2026-08-11T17:53:17.706264+00:00",
   "pipeline": "pymupdf_baseline v1 (native text spans only)",
   "not_implemented": [
     "analysis identification (no stage yet)",
@@ -10,6 +10,41 @@
     "false-extraction rate for structured claims (nothing asserts structured values yet)"
   ],
   "papers": [
+    {
+      "paper": "cooney-2013-exercise-depression",
+      "pdf": "PMC9721454.pdf",
+      "parse_state": "SUCCESS",
+      "pages_parsed": 132,
+      "values": {
+        "known_total": 297,
+        "found_on_page": 297,
+        "found_elsewhere": 0,
+        "missing": 0
+      },
+      "pooled": {
+        "known_total": 26,
+        "found_on_page": 17,
+        "found_elsewhere": 9,
+        "missing": 0
+      },
+      "labels": {
+        "known_total": 72,
+        "found_on_page": 72,
+        "found_elsewhere": 0,
+        "missing": 0
+      },
+      "abstained_rows": 0,
+      "missing_examples": [],
+      "values_by_source": {
+        "FOREST_PLOT": {
+          "known_total": 297,
+          "found_on_page": 297,
+          "found_elsewhere": 0,
+          "missing": 0
+        }
+      },
+      "trivial_targets": 427
+    },
     {
       "paper": "driessen-2015-nih-psychotherapy",
       "pdf": "PMC4589340.pdf",
@@ -243,10 +278,6 @@
     }
   ],
   "skipped": [
-    {
-      "paper": "cooney-2013-exercise-depression",
-      "reason": "missing PDF or truth files"
-    },
     {
       "paper": "goyal-2014-meditation",
       "reason": "holdout \u2014 not run"

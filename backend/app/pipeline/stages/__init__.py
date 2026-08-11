@@ -1,1 +1,5 @@
-from app.pipeline.stages import detect_figures, parse_document  # noqa: F401  (registers stages)
+from app.pipeline.stages import (  # noqa: F401  (registers stages)
+    detect_figures,
+    extract_figure_vision,
+    parse_document,
+)

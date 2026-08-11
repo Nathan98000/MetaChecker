@@ -136,6 +136,15 @@ SE = 0.1327  [DERIVED · CALCULATION · HIGH ·
 rules are versioned config, so re-scoring is reproducible. LLM self-reported
 confidence is never used as the rule input.
 
+**Corroboration upgrades (researcher decision 2026-08-11):** an uncorroborated
+vision-only extraction defaults to MEDIUM (`vision_uncorroborated_v1`) — an
+initial default, not an architectural ceiling. Rules-based, provenance-recorded
+upgrades: vision + matching text-encoded table value → potentially HIGH
+(`vision_table_corroborated_v1`); two independent extraction channels agree →
+potentially HIGH (`dual_channel_agreement_v1`); researcher verification →
+review_state VERIFIED. Each upgrade appends a revision citing both evidence
+sources. The model can never upgrade its own confidence.
+
 ## 7. Propagation and orientation
 
 - Derived confidence = min(input confidences), further downgradable by rule

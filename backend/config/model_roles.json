@@ -1,0 +1,16 @@
+{
+  "_comment": "Model-role assignments (doc 00 A16). Roles are the architecture; concrete models are configuration, to be re-derived from gold-corpus benchmarks. Every call records the concrete model id actually used.",
+  "roles": {
+    "FAST_MODEL": "claude-haiku-4-5-20251001",
+    "DEFAULT_EXTRACTION_MODEL": "claude-sonnet-5",
+    "COMPLEX_EXTRACTION_MODEL": "claude-fable-5",
+    "ESCALATION_MODEL": "claude-fable-5"
+  },
+  "task_routing": {
+    "forest_plot_vision": "COMPLEX_EXTRACTION_MODEL"
+  },
+  "cost_controls": {
+    "warning_threshold_usd": null,
+    "hard_limit_usd": null
+  }
+}

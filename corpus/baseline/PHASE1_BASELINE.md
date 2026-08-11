@@ -126,3 +126,14 @@ text-encoded tables ≈100%, forest plots 1–15%. Driessen additionally
 contributes 19 unpublished-study rows flagged
 SOURCE_DATA_NOT_PUBLICLY_VERIFIABLE (6 fully suppressed, certainty UNRESOLVED)
 — the corpus's A22 abstention fixtures.
+
+## Addendum 3 (same day): Cooney 2013 truth set added — the counter-case
+
+Cochrane/RevMan forest "plots" are fully TEXT-ENCODED: 297/297 (100%) study
+values and 72/72 labels on-page natively. Conclusion sharpened: it is figure
+ENCODING, not figure format, that determines native reachability — RevMan
+vector-text forests are completely readable; journal-typeset raster/vector-art
+plots (Yang 1-9%, Prochaska 1%, Hahn 1%, Driessen 15%) are not. The
+detect_figure_regions `needs_vision` signal (interior-text presence) routes
+exactly this distinction, so Cooney-style documents will bypass vision
+entirely — the escalation architecture is validated in both directions.
