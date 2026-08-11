@@ -16,3 +16,7 @@ Status: DRAFT (researcher sign-off pending)
   attribution recorded as AMBIGUOUS in the note. E41 (missing overall row)
   kept UNRESOLVED per both passes.
 - This paper is contradiction-rich (10 recorded) — ideal for §24/§41 testing.
+
+TRUTH_STATUS: PRE_FREEZE — AI double-pass reconciled, human-unverified.
+Benchmarks against this state are BENCHMARK_AGAINST_PREFREEZE_TRUTH.
+Researcher corrections become versioned revisions; freeze tag: gold-truth-v1.

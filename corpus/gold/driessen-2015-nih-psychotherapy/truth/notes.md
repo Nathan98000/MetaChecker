@@ -224,3 +224,7 @@ certainty=KNOWN for the values with identity explicitly UNRESOLVED in the note.
 ### Status
 
 **DRAFT** — pending researcher spot-check and sign-off.
+
+TRUTH_STATUS: PRE_FREEZE — AI double-pass reconciled, human-unverified.
+Benchmarks against this state are BENCHMARK_AGAINST_PREFREEZE_TRUTH.
+Researcher corrections become versioned revisions; freeze tag: gold-truth-v1.

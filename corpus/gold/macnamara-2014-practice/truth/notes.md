@@ -33,3 +33,7 @@ Status: DRAFT (researcher sign-off pending)
 - Pass B additionally noted performance-method participant counts sum to
   11,321 > 11,135, explained by the table's own footnote (samples contribute
   to multiple types) — recorded as explained, not a contradiction.
+
+TRUTH_STATUS: PRE_FREEZE — AI double-pass reconciled, human-unverified.
+Benchmarks against this state are BENCHMARK_AGAINST_PREFREEZE_TRUTH.
+Researcher corrections become versioned revisions; freeze tag: gold-truth-v1.

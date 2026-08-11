@@ -37,3 +37,7 @@ Status: DRAFT — pass A transcribed; pass B reconciliation pending
   everywhere; arm sums 34/5431 and 18/3801; 8 double-zero + 14 = 22).
 - Figures are raster images (captions are text; plot contents are not) —
   confirmed by both passes reading figures from rendered images.
+
+TRUTH_STATUS: PRE_FREEZE — AI double-pass reconciled, human-unverified.
+Benchmarks against this state are BENCHMARK_AGAINST_PREFREEZE_TRUTH.
+Researcher corrections become versioned revisions; freeze tag: gold-truth-v1.

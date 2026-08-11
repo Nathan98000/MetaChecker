@@ -160,3 +160,7 @@ meta-analyses.
 
 - [ ] Researcher spot-check against source PDF
 - [ ] Sign-off recorded here (name, date) — until then status remains DRAFT
+
+TRUTH_STATUS: PRE_FREEZE — AI double-pass reconciled, human-unverified.
+Benchmarks against this state are BENCHMARK_AGAINST_PREFREEZE_TRUTH.
+Researcher corrections become versioned revisions; freeze tag: gold-truth-v1.
