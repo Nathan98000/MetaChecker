@@ -127,14 +127,28 @@ async def upload_document(request: Request, project_id: str, file: UploadFile):
             filename=file.filename or "document.pdf",
             content=content,
         )
-        queue.enqueue(
-            session,
-            project_id=project_id,
-            stage_id=parse_stage.STAGE_ID,
-            work_item_ref=doc.id,
-            idempotency_key=parse_stage.idempotency_key(doc.sha256),
-            input_hash=doc.sha256,
+        import os
+
+        from app.pipeline.stages import (
+            assemble_tables,
+            detect_figures,
+            extract_figure_vision,
+            reconcile_representations,
         )
+
+        stages_to_run = [parse_stage, detect_figures, assemble_tables]
+        if os.environ.get("ANTHROPIC_API_KEY"):
+            stages_to_run.append(extract_figure_vision)
+        stages_to_run.append(reconcile_representations)
+        for mod in stages_to_run:
+            queue.enqueue(
+                session,
+                project_id=project_id,
+                stage_id=mod.STAGE_ID,
+                work_item_ref=doc.id,
+                idempotency_key=mod.idempotency_key(doc.sha256),
+                input_hash=doc.sha256,
+            )
         session.commit()
         return {"document": _doc_payload(session, doc), "created": created}
 
@@ -284,6 +298,63 @@ def restore_datapoint(request: Request, data_point_id: str, body: dict):
         )
         session.commit()
         return {"revision_no": rev.revision_no, "review_state": rev.review_state}
+
+
+# ---- published data / reconciliation / findings (internal audit v1) ---------
+
+
+@router.get("/documents/{document_id}/records")
+def get_table_records(request: Request, document_id: str):
+    """Assembled published-data rows (layout extraction) with cell provenance."""
+    with _session(request) as session:
+        artifact = session.scalar(
+            select(ParseArtifact)
+            .where(ParseArtifact.document_id == document_id,
+                   ParseArtifact.kind == "TABLE_RECORDS")
+            .order_by(ParseArtifact.created_at.desc())
+        )
+        if artifact is None:
+            raise AppError(
+                code="NOT_ASSEMBLED_YET",
+                what_happened="Published data rows have not been assembled yet.",
+                what_it_means="The document was parsed but table assembly has not run.",
+                next_steps=["Run processing again, then refresh."],
+                http_status=409,
+            )
+        return {"records": artifact.payload["records"]}
+
+
+@router.get("/documents/{document_id}/reconciliation")
+def get_reconciliation(request: Request, document_id: str):
+    with _session(request) as session:
+        artifact = session.scalar(
+            select(ParseArtifact)
+            .where(ParseArtifact.document_id == document_id,
+                   ParseArtifact.kind == "RECONCILIATION")
+            .order_by(ParseArtifact.created_at.desc())
+        )
+        return {"pairs": artifact.payload["pairs"] if artifact else []}
+
+
+@router.get("/projects/{project_id}/findings")
+def list_findings(request: Request, project_id: str):
+    from app.db.models import AuditFinding
+
+    with _session(request) as session:
+        findings = session.scalars(
+            select(AuditFinding).where(AuditFinding.project_id == project_id)
+            .order_by(AuditFinding.created_at)
+        ).all()
+        return [
+            {
+                "id": f.id, "kind": f.finding_kind, "taxonomy": f.taxonomy_code,
+                "severity": f.severity, "certainty": f.certainty,
+                "review_status": f.review_status, "title": f.title,
+                "description": f.description, "document_id": f.document_id,
+                "evidence": f.evidence,
+            }
+            for f in findings
+        ]
 
 
 # ---- pipeline (dev/test helpers; hidden behind Advanced in the UI) ----------

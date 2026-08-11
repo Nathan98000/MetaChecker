@@ -18,6 +18,51 @@ function stageBadge(stage?: StageInfo) {
   }
 }
 
+interface Finding {
+  id: string;
+  kind: string;
+  severity: string;
+  certainty: string;
+  review_status: string;
+  title: string;
+  description: string;
+}
+
+function FindingsSection({ projectId }: { projectId: string | null }) {
+  const [findings, setFindings] = useState<Finding[]>([]);
+  useEffect(() => {
+    if (!projectId) return;
+    import("@/lib/api").then(({ API_BASE }) =>
+      fetch(`${API_BASE}/projects/${projectId}/findings`)
+        .then((r) => (r.ok ? r.json() : []))
+        .then(setFindings)
+        .catch(() => {})
+    );
+  }, [projectId]);
+  if (findings.length === 0) return null;
+  return (
+    <div className="card">
+      <h2>Needs review — possible contradictions</h2>
+      <p className="muted">
+        Places where the publication&apos;s own representations disagree. The
+        system flags these; it never decides which side is correct — that
+        judgment is yours.
+      </p>
+      {findings.map((f) => (
+        <div className="list-item" key={f.id}>
+          <div>
+            <div>
+              <span className="status bad">! {f.certainty.toLowerCase()}</span>{" "}
+              {f.title}
+            </div>
+            <div className="muted">{f.description}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function ProjectView() {
   const params = useSearchParams();
   const projectId = params.get("id");
@@ -113,14 +158,21 @@ function ProjectView() {
               </div>
               <div className="row">
                 {stageBadge(d.stages["parse_document"])}
-                <a className="button" href={`/document/?id=${d.id}`}>
-                  View evidence
+                <a className="button secondary" href={`/document/?id=${d.id}`}>
+                  Source evidence
                 </a>
+                {d.stages["assemble_table_records"]?.state === "SUCCESS" && (
+                  <a className="button" href={`/records/?id=${d.id}`}>
+                    Published data
+                  </a>
+                )}
               </div>
             </div>
           ))}
         </div>
       )}
+
+      <FindingsSection projectId={projectId} />
 
       {project && project.open_workflow_issues.length > 0 && (
         <div className="card">

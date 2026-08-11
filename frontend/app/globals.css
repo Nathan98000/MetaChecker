@@ -78,7 +78,8 @@ button,
   text-decoration: none;
   display: inline-block;
 }
-button.secondary {
+button.secondary,
+.button.secondary {
   background: var(--card);
   color: var(--accent);
   border: 1px solid var(--line);
