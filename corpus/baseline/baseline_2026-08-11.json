@@ -1,0 +1,267 @@
+{
+  "run_at": "2026-08-11T16:40:24.560656+00:00",
+  "pipeline": "pymupdf_baseline v1 (native text spans only)",
+  "not_implemented": [
+    "analysis identification (no stage yet)",
+    "structured forest-plot row assembly (no stage yet)",
+    "structured table-record assembly (no stage yet)",
+    "per-value bounding-box association (spans have bboxes; value\u2192span linking not implemented)",
+    "reference-list recovery (no stage yet)",
+    "false-extraction rate for structured claims (nothing asserts structured values yet)"
+  ],
+  "papers": [
+    {
+      "paper": "driessen-2015-nih-psychotherapy",
+      "pdf": "PMC4589340.pdf",
+      "parse_state": "SUCCESS",
+      "pages_parsed": 23,
+      "values": {
+        "known_total": 410,
+        "found_on_page": 63,
+        "found_elsewhere": 119,
+        "missing": 228
+      },
+      "pooled": {
+        "known_total": 105,
+        "found_on_page": 63,
+        "found_elsewhere": 0,
+        "missing": 42
+      },
+      "labels": {
+        "known_total": 98,
+        "found_on_page": 0,
+        "found_elsewhere": 0,
+        "missing": 98
+      },
+      "abstained_rows": 15,
+      "missing_examples": [
+        "Arean, 2010/weight_pct: '8.33'",
+        "[dup]Arean, 2010/weight_pct: '8.33'",
+        "Barber, 2012/ci_lower: '-0.43'",
+        "[dup]Barber, 2012/ci_lower: '-0.43'",
+        "Barber, 2012/ci_upper: '0.58'",
+        "[dup]Barber, 2012/ci_upper: '0.58'",
+        "Barber, 2012/weight_pct: '5.16'",
+        "[dup]Barber, 2012/weight_pct: '5.16'",
+        "Beutler, 1991/ci_lower: '-0.52'",
+        "[dup]Beutler, 1991/ci_lower: '-0.52'",
+        "Beutler, 1991/weight_pct: '4.19'",
+        "[dup]Beutler, 1991/weight_pct: '4.19'"
+      ],
+      "values_by_source": {
+        "FOREST_PLOT": {
+          "known_total": 410,
+          "found_on_page": 63,
+          "found_elsewhere": 119,
+          "missing": 228
+        }
+      }
+    },
+    {
+      "paper": "hahn-2024-exercise-intake",
+      "pdf": "PMC11247817.pdf",
+      "parse_state": "SUCCESS",
+      "pages_parsed": 28,
+      "values": {
+        "known_total": 368,
+        "found_on_page": 4,
+        "found_elsewhere": 99,
+        "missing": 265
+      },
+      "pooled": {
+        "known_total": 62,
+        "found_on_page": 0,
+        "found_elsewhere": 19,
+        "missing": 43
+      },
+      "labels": {
+        "known_total": 85,
+        "found_on_page": 22,
+        "found_elsewhere": 0,
+        "missing": 63
+      },
+      "abstained_rows": 2,
+      "missing_examples": [
+        "Ajibewa 2017 NW 25% stretching/effect: '17.00'",
+        "[dup]Ajibewa 2017 NW 25% stretching/effect: '17.00'",
+        "Ajibewa 2017 NW 25% stretching/ci_lower: '-180.35'",
+        "[dup]Ajibewa 2017 NW 25% stretching/ci_lower: '-180.35'",
+        "Ajibewa 2017 NW 25% stretching/ci_upper: '214.35'",
+        "[dup]Ajibewa 2017 NW 25% stretching/ci_upper: '214.35'",
+        "Ajibewa 2017 NW 50% push-ups/effect: '73.00'",
+        "[dup]Ajibewa 2017 NW 50% push-ups/effect: '73.00'",
+        "Ajibewa 2017 NW 50% push-ups/ci_lower: '-143.58'",
+        "[dup]Ajibewa 2017 NW 50% push-ups/ci_lower: '-143.58'",
+        "Ajibewa 2017 NW 50% push-ups/ci_upper: '289.58'",
+        "[dup]Ajibewa 2017 NW 50% push-ups/ci_upper: '289.58'"
+      ],
+      "values_by_source": {
+        "FOREST_PLOT": {
+          "known_total": 368,
+          "found_on_page": 4,
+          "found_elsewhere": 99,
+          "missing": 265
+        }
+      },
+      "trivial_targets": 295
+    },
+    {
+      "paper": "macnamara-2014-practice",
+      "pdf": "macnamara-2014-with-corrigendum.pdf",
+      "parse_state": "SUCCESS",
+      "pages_parsed": 14,
+      "values": {
+        "known_total": 0,
+        "found_on_page": 0,
+        "found_elsewhere": 0,
+        "missing": 0
+      },
+      "pooled": {
+        "known_total": 33,
+        "found_on_page": 22,
+        "found_elsewhere": 11,
+        "missing": 0
+      },
+      "labels": {
+        "known_total": 0,
+        "found_on_page": 0,
+        "found_elsewhere": 0,
+        "missing": 0
+      },
+      "abstained_rows": 0,
+      "missing_examples": [],
+      "values_by_source": {
+        "FOREST_PLOT": {
+          "known_total": 0,
+          "found_on_page": 0,
+          "found_elsewhere": 0,
+          "missing": 0
+        }
+      }
+    },
+    {
+      "paper": "prochaska-2012-varenicline",
+      "pdf": "PMC3344735.pdf",
+      "parse_state": "SUCCESS",
+      "pages_parsed": 11,
+      "values": {
+        "known_total": 820,
+        "found_on_page": 492,
+        "found_elsewhere": 161,
+        "missing": 167
+      },
+      "pooled": {
+        "known_total": 30,
+        "found_on_page": 27,
+        "found_elsewhere": 0,
+        "missing": 3
+      },
+      "labels": {
+        "known_total": 44,
+        "found_on_page": 22,
+        "found_elsewhere": 0,
+        "missing": 22
+      },
+      "abstained_rows": 2,
+      "missing_examples": [
+        "Fagerstr\u00f6m 2010/effect: '-0.0046'",
+        "[dup]Fagerstr\u00f6m 2010/effect: '-0.0046'",
+        "Fagerstr\u00f6m 2010/ci_lower: '-0.0173'",
+        "[dup]Fagerstr\u00f6m 2010/ci_lower: '-0.0173'",
+        "Fagerstr\u00f6m 2010/ci_upper: '0.0081'",
+        "[dup]Fagerstr\u00f6m 2010/ci_upper: '0.0081'",
+        "Fagerstr\u00f6m 2010/weight_pct: '5.12'",
+        "[dup]Fagerstr\u00f6m 2010/weight_pct: '5.12'",
+        "Rennard 2012/effect: '0.0000'",
+        "[dup]Rennard 2012/effect: '0.0000'",
+        "Rennard 2012/ci_lower: '-0.0087'",
+        "[dup]Rennard 2012/ci_lower: '-0.0087'"
+      ],
+      "values_by_source": {
+        "FOREST_PLOT": {
+          "known_total": 332,
+          "found_on_page": 4,
+          "found_elsewhere": 161,
+          "missing": 167
+        },
+        "TABLE": {
+          "known_total": 488,
+          "found_on_page": 488,
+          "found_elsewhere": 0,
+          "missing": 0
+        }
+      },
+      "trivial_targets": 212
+    },
+    {
+      "paper": "yang-2018-sii",
+      "pdf": "PMC6160683.pdf",
+      "parse_state": "SUCCESS",
+      "pages_parsed": 8,
+      "values": {
+        "known_total": 160,
+        "found_on_page": 15,
+        "found_elsewhere": 24,
+        "missing": 121
+      },
+      "pooled": {
+        "known_total": 70,
+        "found_on_page": 50,
+        "found_elsewhere": 14,
+        "missing": 6
+      },
+      "labels": {
+        "known_total": 44,
+        "found_on_page": 22,
+        "found_elsewhere": 0,
+        "missing": 22
+      },
+      "abstained_rows": 1,
+      "missing_examples": [
+        "Hong (2015)/effect: '1.38'",
+        "[dup]Hong (2015)/effect: '1.38'",
+        "Hong (2015)/ci_lower: '1.02'",
+        "[dup]Hong (2015)/ci_lower: '1.02'",
+        "Hong (2015)/ci_upper: '1.85'",
+        "[dup]Hong (2015)/ci_upper: '1.85'",
+        "Hong (2015)/weight_pct: '5.67'",
+        "[dup]Hong (2015)/weight_pct: '5.67'",
+        "Loll (2016)/ci_lower: '1.35'",
+        "[dup]Loll (2016)/ci_lower: '1.35'",
+        "Loll (2016)/ci_upper: '2.50'",
+        "[dup]Loll (2016)/ci_upper: '2.50'"
+      ],
+      "values_by_source": {
+        "FOREST_PLOT": {
+          "known_total": 160,
+          "found_on_page": 15,
+          "found_elsewhere": 24,
+          "missing": 121
+        }
+      },
+      "trivial_targets": 3
+    }
+  ],
+  "skipped": [
+    {
+      "paper": "cooney-2013-exercise-depression",
+      "reason": "missing PDF or truth files"
+    },
+    {
+      "paper": "goyal-2014-meditation",
+      "reason": "holdout \u2014 not run"
+    },
+    {
+      "paper": "nissen-2007-rosiglitazone",
+      "reason": "missing PDF or truth files"
+    },
+    {
+      "paper": "singh-2011-varenicline",
+      "reason": "holdout \u2014 not run"
+    },
+    {
+      "paper": "smith-silva-2011-ethnic-identity",
+      "reason": "holdout \u2014 not run"
+    }
+  ]
+}

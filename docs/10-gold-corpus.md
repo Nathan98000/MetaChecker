@@ -1,15 +1,44 @@
-# Gold-Standard Benchmark Corpus — Proposed Candidates
+# Gold-Standard Benchmark Corpus
 
-Status: Proposed 2026-08-11 (researcher sign-off requested before truth-set
-construction begins). Target size per decision of 2026-08-11: 6–10.
-All OA links were verified live; accessibility of primaries was spot-checked
-(3–5 per candidate), not exhaustively confirmed.
+Status: **Approved with development/holdout split (researcher decision
+2026-08-11).** All OA links were verified live; accessibility of primaries was
+spot-checked (3–5 per candidate), not exhaustively confirmed.
 
-**Proposal: 10 candidates in two tiers.** Tier 1 (6) gets manual double-entry
-truth sets first; Tier 2 (4) follows. The set deliberately includes hard
-cases — documented errata, zero-cell pathology, author-supplied data,
-dissertation-heavy reference lists — because the corpus exists to expose
-weaknesses, not to flatter the system.
+## Development vs holdout split
+
+**Development corpus (7)** — used for truth-set construction, baselining, and
+parser tuning: C1 Cooney, C2 Nissen, C3 Prochaska, C4 Macnamara, C5 Hahn,
+C6 Yang, C8 Driessen. Together these cover every required characteristic:
+continuous/SMD (C1, C5, C8), binary (C2, C3), correlation (C4), TTE/generic IV
+(C6), multi-arm/shared-control (C5, C1), documented corrections including a
+calculation-level error (C2 erratum, C4 corrigendum, C5 correction),
+author-supplied/non-public data (C8, C2), and hard tables/plots across seven
+publisher layouts.
+
+**Holdout corpus (3)** — kept outside routine development and tuning; used
+only to test whether extraction improvements generalize:
+
+- **C7 Singh 2011** (binary, Peto, zero-event exclusion): near-neighbor of
+  development paper C3 but unseen — tests generalization to a very similar
+  binary-safety paper, and later the C3↔C7 divergence diagnosis on a paper the
+  system was never tuned on.
+- **C9 Goyal 2014** (continuous, hard author-manuscript layout, many
+  outcomes × timepoints): the hardest continuous layout stays unseen.
+- **C10 Smith & Silva 2011** (correlation, 184-study appendix tables): its
+  ground truth comes from the independent Maassen et al. 2020 audit rather
+  than from us, so holdout evaluation carries no leakage from our own
+  truth-construction conventions.
+
+Rules: holdout papers are not parsed during development except in scheduled
+evaluation runs; no error analysis of holdout failures feeds tuning decisions
+directly (findings there become new *development* fixtures only if a matching
+weakness can be reproduced on development papers). Do not repeatedly optimize
+against every paper in the development corpus either — per-paper overfitting
+is checked by the holdout gap.
+
+The set deliberately includes hard cases — documented errata, zero-cell
+pathology, author-supplied data, dissertation-heavy reference lists — because
+the corpus exists to expose weaknesses, not to flatter the system.
 
 ---
 
@@ -114,6 +143,25 @@ weaknesses, not to flatter the system.
 Documented ground-truth discrepancies (the corpus's audit "answer keys"):
 C2 erratum · C4 corrigendum · C5 correction · C3↔C7 divergence · C10
 Maassen-audited discrepancies · C1 Ekkekakis critique (qualitative).
+
+## Truth-set status (2026-08-11)
+
+| Paper | PDF acquired | Truth status |
+|---|---|---|
+| yang-2018-sii | ✓ | Double-pass reconciled (zero numeric disagreements); 41 effect rows, 19 analyses, 10 contradictions. DRAFT pending researcher sign-off. |
+| prochaska-2012-varenicline | ✓ | Double-pass reconciled (zero numeric disagreements; glyph-verified misprints); 137 effect rows, 10 analyses, 8 contradictions. DRAFT. |
+| macnamara-2014-practice | ✓ | Double-pass reconciled; 21 analyses (both versions), 4 contradictions incl. dual-text-layer property; study-level data live in authors' OSF file (not in PDF). DRAFT. |
+| hahn-2024-exercise-intake | ✓ | Double-pass reconciled (zero numeric disagreements); 92 effect rows incl. re-split shared-control variants, 14 analyses, 16 contradictions (headline: Thivel 2015 SE/CI swap in Fig 4). DRAFT. |
+| driessen-2015-nih-psychotherapy | ✓ | Double-pass reconciled (zero numeric disagreements); 113 effect rows incl. 19 SOURCE_DATA_NOT_PUBLICLY_VERIFIABLE unpublished rows (6 suppressed → UNRESOLVED), 31 analyses, 23 contradictions. DRAFT. |
+| cooney-2013-exercise-depression | ✓ | Truth pending (tranche 3 — needs analysis-subset scoping: ~150-page Cochrane review; propose truthing Analysis 1.1 + 2 secondary analyses rather than all). |
+| nissen-2007-rosiglitazone | ✗ (NEJM PDF is browser-gated; needs manual download) | Truth pending. |
+| holdout ×3 | not acquired (deliberate) | Untouched per holdout rules. |
+
+Truth v0 provenance: two independent extraction passes per paper (blind),
+reconciled with disagreements logged in each `truth/notes.md`. Passes were
+performed by AI readers against the actual PDFs (text layer + rendered
+figures); status stays DRAFT until researcher spot-check sign-off. Phase-1
+baseline frozen at `corpus/baseline/PHASE1_BASELINE.md`.
 
 ## Truth-set construction notes
 

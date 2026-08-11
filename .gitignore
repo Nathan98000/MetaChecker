@@ -10,3 +10,6 @@ src-tauri/target/
 src-tauri/gen/
 icon-source.png
 .DS_Store
+# Corpus source documents are not redistributed (docs 52/§66: legal copies
+# only, licensing varies per paper). Re-acquire via truth/meta.json oa_url.
+corpus/gold/*/source/

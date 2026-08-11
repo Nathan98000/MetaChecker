@@ -1,0 +1,11 @@
+analysis_id,outcome,timepoint,population,comparison,subgroup_of,effect_measure,model,n_studies_reported,pooled_effect,pooled_ci_lower,pooled_ci_upper,i2,tau2,q,p_value,source_page,source_figure,source_table,certainty,note
+A1,CV serious adverse events (treatment emergent),treatment emergent,smokers in placebo-controlled varenicline RCTs,varenicline vs placebo,,Risk difference (M-H),FIXED,22,0.27%,-0.10%,0.63%,0%,,,0.15,3,Fig 2,Table 2,KNOWN,
+A2,CV serious adverse events,treatment emergent,smokers in placebo-controlled varenicline RCTs,varenicline vs placebo,,Relative risk (M-H),FIXED,14,1.40,0.82,2.39,0%,,,0.22,3,,Table 2,KNOWN,
+A3,CV serious adverse events,treatment emergent,smokers in placebo-controlled varenicline RCTs,varenicline vs placebo,,M-H odds ratio,FIXED,14,1.41,0.82,2.42,0%,,,0.22,3,,Table 2,KNOWN,
+A4,CV serious adverse events,treatment emergent,smokers in placebo-controlled varenicline RCTs,varenicline vs placebo,,Peto odds ratio,FIXED,14,1.58,0.90,2.76,0%,,,0.11,3,,Table 2,KNOWN,
+A5,Sensitivity: excl. active-CVD trials,NOT_APPLICABLE,smokers in placebo-controlled varenicline RCTs,varenicline vs placebo,,Risk difference,FIXED,20,0.29%,-0.04,0.62,0%,,,,3,,,KNOWN,
+A6,Sensitivity: excl. smokeless-tobacco trials,NOT_APPLICABLE,smokers in placebo-controlled varenicline RCTs,varenicline vs placebo,,Risk difference,FIXED,20,0.31%,-0.07,0.69,0%,,,,3,,,KNOWN,
+A7,Sensitivity: excl. maintenance trial (Tonstad),NOT_APPLICABLE,smokers in placebo-controlled varenicline RCTs,varenicline vs placebo,,Risk difference,FIXED,21,0.26%,-0.16,0.67,0%,,,,3,,,KNOWN,
+A8,Sensitivity: excl. unpublished trial (A3051072),NOT_APPLICABLE,smokers in placebo-controlled varenicline RCTs,varenicline vs placebo,,Risk difference,FIXED,21,0.27%,-0.10,0.64,0%,,,,3,,,KNOWN,
+A9,CV SAE over full follow-up (Singh window comparison),NOT_APPLICABLE,smokers in placebo-controlled varenicline RCTs,varenicline vs placebo,,Risk difference,FIXED,22,0.47%,0.04,0.91,,,,,4,,,KNOWN,
+A10,Cumulative RD by publication year (final),NOT_APPLICABLE,smokers in placebo-controlled varenicline RCTs,varenicline vs placebo,,Risk difference,FIXED,22,0.0027,-0.0010,0.0063,,,,,11,Fig 3,,KNOWN,

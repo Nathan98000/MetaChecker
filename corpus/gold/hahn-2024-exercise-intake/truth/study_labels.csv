@@ -1,0 +1,86 @@
+analysis_id,study_label_verbatim,appears_in,source_pages,certainty,note
+,Ajibewa 2017 NW 25% stretching,FOREST_PLOT,22;23;24;26,KNOWN,"pass A omitted p23 in its label list, contradicted by its own Fig 4 extraction; p23 adopted from pass B"
+,Ajibewa 2017 NW 50% push-ups,FOREST_PLOT,22;23;24;26,KNOWN,
+,Ajibewa 2017 NW 75% jumping jacks,FOREST_PLOT,22;23;24;25;26,KNOWN,
+,Ajibewa 2017 OB 25%,FOREST_PLOT,22;23;24;26,KNOWN,
+,Ajibewa 2017 OB 50%,FOREST_PLOT,22;23;24;26,KNOWN,
+,Ajibewa 2017 OB 75%,FOREST_PLOT,22;23;24;25;26,KNOWN,
+,Bozinosvki 2009 NW 15min Treadmill,FOREST_PLOT,22;23;24;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3); sic 'Bozinosvki' - forest plots misspell 'Bozinovski' (text/Table 1/Table 2/refs); verified at 10x zoom
+,Bozinosvki 2009 NW 45min Treadmill,FOREST_PLOT,22;23;24;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3); sic 'Bozinosvki'
+,Fearnbach 2016 OB 45min cycling,FOREST_PLOT,22;23;24;26,KNOWN,pass B listed p25 in error - arm is low/moderate intensity and absent from both passes' Fig 6 extractions; pass A page list adopted
+,Fearnbach Masterson 2016 NW 30min cycling,FOREST_PLOT,22;23;24;25;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,Fearnbach Silvert 2017 NW 45min cycling,FOREST_PLOT,22;23;24;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,Fearnbach Silvert 2017 OB 45min cycling,FOREST_PLOT,22;23;24;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,"Fillon 2020 OB 30min cycling, meal 30min post ex",FOREST_PLOT,22;23;24;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,"Fillon 2020 OB 30min cycling, meal 90min post ex",FOREST_PLOT,22;23;24;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,Fillon Beaulieu 2020 OB 30min cycling,FOREST_PLOT,22;23;24;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,"Fillon Mathieu 2020 OB 30min cycling, meal 1h p.ex",FOREST_PLOT,22;23;24;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,"Fillon Mathieu 2020 OB 30min cycling, meal 3h p.ex",FOREST_PLOT,22;23;24;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,Masurier 2018 OB 20min,FOREST_PLOT,22;23;24;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,Masurier 2018 OB 40min,FOREST_PLOT,22;23;24;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,Miguet 2018 OB 15min HIIT,FOREST_PLOT,22;23;24;25;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,Morris 2018 NW 22min HIIT,FOREST_PLOT,22;23;24;25;26,KNOWN,
+,Nemet 2010 NW 45min aerobic,FOREST_PLOT,22;23;24;25;26,KNOWN,
+,Nemet 2010 NW 45min resistance training,FOREST_PLOT,22;23;24;26,KNOWN,
+,Nemet 2010 NW 45min swimming,FOREST_PLOT,22;23;24;26,KNOWN,
+,Nemet 2010 OW 45min aerobic,FOREST_PLOT,22;23;24;25;26,KNOWN,
+,Nemet 2010 OW 45min resistance training,FOREST_PLOT,22;23;24;26,KNOWN,
+,Nemet 2010 OW 45min swimming,FOREST_PLOT,22;23;24;26,KNOWN,
+,Saunders 2013 NW walking,FOREST_PLOT,22;23;24;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3); labeled 2013 though reference [70] is Br J Nutr 2014 (HAH-CON-12)
+,Saunders 2013 NW wallking + PA,FOREST_PLOT,22;23;24;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3); sic 'wallking'
+,Thivel 2012 OB 40%,FOREST_PLOT,22;23;24;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,Thivel 2012 OB 75%,FOREST_PLOT,22;23;24;25;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,Thivel 2013 OB 30min 75%,FOREST_PLOT,22;23;24;25;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3); '30min' vs Table 1's 3 x 10 min bouts (HAH-CON-15)
+,Thivel 2014 NW 30min,FOREST_PLOT,22;23;24;25;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,Thivel 2015 OW 60min rugby,FOREST_PLOT,22;23;24;25;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,Thivel 2015 OW 75%,FOREST_PLOT,22;23;24;25;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,Thivel 2017 OB 65%,FOREST_PLOT,22;23;24;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,Thivel 2020 OB 30min,FOREST_PLOT,22;23;24;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,Thivel Rousset 2011 OB 30min cycling,FOREST_PLOT,22;23;24;25;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,Thivel Taillardat 2011 OB 30min,FOREST_PLOT,22;23;24;25;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,Varley Campbell 2017 NW,FOREST_PLOT,22;23;24;26,KNOWN,printed twice on p22 (Fig 2 and Fig 3)
+,Varley Campbell 2017 NW + Snack,FOREST_PLOT,22;23;24;26,KNOWN,"printed twice on p22 (Fig 2 and Fig 3); Fig 5 prints SE 98.8 / CI [-276.64, 110.64] vs 98.81 / [-276.66, 110.66] elsewhere (HAH-CON-04)"
+,Ajibewa et al. 2017 [58],TABLE,5,KNOWN,
+,Bozinovski et al. 2009 [59],TABLE,6,KNOWN,spelled 'Bozinovski' here vs 'Bozinosvki' in forest plots
+,Fearnbach et al. 2016 [60],TABLE,6,KNOWN,
+,"Fearnbach, Masterson et al. 2016 [61]",TABLE,6,KNOWN,
+,"Fearnbach, Silvert et al. 2017 [62]",TABLE,7,KNOWN,
+,Fillon et al. 2020 [63],TABLE,8,KNOWN,
+,"Fillon, Beaulieu et al. 2020 [64]",TABLE,8,KNOWN,
+,"Fillon, Mathieu et al. 2020 [65]",TABLE,9,KNOWN,
+,Masurier et al. 2018 [66],TABLE,10,KNOWN,
+,Miguet et al. 2018 [67],TABLE,10,KNOWN,
+,Morris et al. 2018 [68],TABLE,11,KNOWN,
+,Nemet et al. 2010 [69],TABLE,11,KNOWN,
+,Saunders et al. 2013 [70],TABLE,12,KNOWN,reference [70] published 2014 (HAH-CON-12)
+,"Thivel, Isacco, Rousset et al. 2011 [71]",TABLE,12,KNOWN,
+,"Thivel, Isacco, Taillardat et al. 2011 [72]",TABLE,13,KNOWN,
+,Thivel et al. 2012 [73],TABLE,13,KNOWN,Table 1 Fat (%) CON duplicates Protein (%) CON 20.72 +/- 4.69 (HAH-CON-10)
+,Thivel et al. 2013 [74],TABLE,14,KNOWN,
+,Thivel et al. 2014 [75],TABLE,14,KNOWN,incl. footnote '* study arm from Thivel et al. 2013'; OB arm not pooled
+,Thivel et al. 2015 [76],TABLE,15,KNOWN,
+,Thivel et al. 2017 [77],TABLE,15,KNOWN,
+,Thivel et al. 2020 [78],TABLE,16,KNOWN,second (snack energy-replacement) arm not pooled
+,Varley-Campbell et al. 2017 [79],TABLE,16,KNOWN,hyphenated here vs 'Varley Campbell' in forest plots/Table 2
+,Ajibewa 2017,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Bozinovski 2009,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Fearnbach 2016 *,TABLE,28,KNOWN,"Table 2 (RoB, image, p28); * = per-protocol"
+,Fearnbach Masterson 2016,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Fearnbach Silvert 2017,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Fillon 2020,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Fillon Beaulieu 2020 *,TABLE,28,KNOWN,"Table 2 (RoB, image, p28); * = per-protocol"
+,Fillon Mathieu 2020,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Masurier 2018,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Miguet 2018,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Morris 2018,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Nemet 2010,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Saunders 2013,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Thivel 2012,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Thivel 2013,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Thivel 2014,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Thivel 2015,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Thivel 2017,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Thivel 2020,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Thivel Rousset 2011,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Thivel Taillardat 2011,TABLE,28,KNOWN,"Table 2 (RoB, image, p28)"
+,Varley Campbell 2017 *,TABLE,28,KNOWN,"Table 2 (RoB, image, p28); * = per-protocol"
