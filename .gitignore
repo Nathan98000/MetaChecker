@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+backend/.venv/
+backend/var/
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/next-env.d.ts
+src-tauri/target/
+src-tauri/gen/
+icon-source.png
+.DS_Store

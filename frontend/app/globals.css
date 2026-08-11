@@ -1,0 +1,215 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --ink: #1a2233;
+  --muted: #5b667a;
+  --line: #dde3ee;
+  --bg: #f7f9fc;
+  --card: #ffffff;
+  --accent: #2456a6;
+  --accent-soft: #e8f0fe;
+  --ok: #1d7a3d;
+  --warn: #a05a00;
+  --bad: #b3261e;
+  --highlight: rgba(255, 200, 40, 0.45);
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.topbar {
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+  padding: 0.7rem 1.2rem;
+}
+
+.brand {
+  font-weight: 650;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 1.05rem;
+}
+
+.main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.2rem;
+}
+
+h1 {
+  font-size: 1.35rem;
+  margin: 0.4rem 0 1rem;
+}
+h2 {
+  font-size: 1.05rem;
+  margin: 1.2rem 0 0.6rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.row {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+button,
+.button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.55rem 1rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+button.secondary {
+  background: var(--card);
+  color: var(--accent);
+  border: 1px solid var(--line);
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+input[type="text"] {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.95rem;
+  min-width: 20rem;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 0.2rem;
+  border-bottom: 1px solid var(--line);
+}
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--muted);
+}
+.status.ok {
+  color: var(--ok);
+}
+.status.warn {
+  color: var(--warn);
+}
+.status.bad {
+  color: var(--bad);
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.error-box {
+  border: 1px solid var(--bad);
+  background: #fdf2f2;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  margin: 0.6rem 0;
+  color: var(--bad);
+}
+
+.scope-note {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  padding: 0.6rem 0.9rem;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.88rem;
+  color: var(--ink);
+}
+
+/* Evidence viewer */
+.evidence {
+  display: grid;
+  grid-template-columns: minmax(320px, 2fr) 3fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.span-list {
+  max-height: 78vh;
+  overflow-y: auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.4rem;
+}
+
+.span-item {
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+.span-item:hover {
+  background: var(--accent-soft);
+}
+.span-item.selected {
+  background: var(--accent-soft);
+  outline: 2px solid var(--accent);
+}
+
+.pdf-pane {
+  position: sticky;
+  top: 1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.8rem;
+}
+
+.pdf-canvas-wrap {
+  position: relative;
+  overflow: auto;
+  max-height: 72vh;
+  border: 1px solid var(--line);
+}
+
+.pdf-highlight {
+  position: absolute;
+  background: var(--highlight);
+  outline: 2px solid rgba(230, 160, 0, 0.9);
+  pointer-events: none;
+  transition: all 0.15s ease;
+}
+
+.page-nav {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
