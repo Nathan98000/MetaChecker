@@ -302,6 +302,27 @@ class WorkflowIssue(Base):
     resolved_at: Mapped[dt.datetime | None] = mapped_column(nullable=True)
 
 
+class AuditFinding(Base):
+    """Scientifically meaningful audit result (doc 05; kept strictly separate
+    from workflow_issue). v1 scope: internal cross-representation findings."""
+
+    __tablename__ = "audit_finding"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uuid7)
+    project_id: Mapped[str] = mapped_column(ForeignKey("project.id"), index=True)
+    finding_kind: Mapped[str] = mapped_column(String(40))  # CONTRADICTION | ...
+    taxonomy_code: Mapped[str] = mapped_column(String(60))
+    severity: Mapped[str] = mapped_column(String(20), default="REVIEW")
+    certainty: Mapped[str] = mapped_column(String(20), default="POSSIBLE")
+    review_status: Mapped[str] = mapped_column(String(30), default="SYSTEM_FLAGGED")
+    title: Mapped[str] = mapped_column(String(300))
+    description: Mapped[str] = mapped_column(Text)
+    document_id: Mapped[str | None] = mapped_column(ForeignKey("document.id"), nullable=True)
+    evidence: Mapped[dict | None] = mapped_column(JSON, nullable=True)  # both sides + provenance
+    detected_by: Mapped[str] = mapped_column(String(80))
+    created_at: Mapped[dt.datetime] = mapped_column(default=_now)
+
+
 class ExternalCallLog(Base):
     """Every external service call: privacy surface (§58) + cost tracking (§63).
     Append-only. An API failure is recorded here, never as domain fact."""
