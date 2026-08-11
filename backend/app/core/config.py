@@ -17,7 +17,15 @@ class Settings(BaseSettings):
     job_lease_seconds: float = 60.0
     job_max_attempts: int = 3
 
-    model_config = {"env_prefix": "METAAUDIT_"}
+    # backend/.env is the sanctioned local-secret mechanism (gitignored).
+    # The Anthropic key is read by the SDK/provider from ANTHROPIC_API_KEY;
+    # it is never stored in the DB, logs, fixtures, or error messages.
+    model_config = {
+        "env_prefix": "METAAUDIT_",
+        "env_file": ".env",
+        "env_file_encoding": "utf-8",
+        "extra": "ignore",
+    }
 
     @property
     def db_path(self) -> Path:
