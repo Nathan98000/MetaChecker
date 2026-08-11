@@ -58,18 +58,24 @@ def norm_label(label: str) -> str:
     return re.sub(r"\s+", " ", (label or "").strip().lower())
 
 
-def truth_figure_rows(paper_dir: Path) -> list[dict]:
+def truth_figure_rows(paper_dir: Path) -> tuple[list[dict], list[dict]]:
+    """→ (KNOWN figure rows, ABSTAIN-EXPECTED figure rows).
+
+    Abstain-expected = truth certainty UNRESOLVED/AMBIGUOUS: a confident
+    extraction against these counts as inappropriate resolution, an
+    abstention as correct behavior."""
     path = paper_dir / "truth" / "published_effects.csv"
     if not path.exists():
-        return []
+        return [], []
     with path.open() as f:
         rows = list(csv.DictReader(f))
-    return [
-        r for r in rows
-        if (r.get("source_type") or "").upper() == "FOREST_PLOT"
-        and (r.get("certainty") or "KNOWN").upper() == "KNOWN"
-        and (r.get("effect") or "").strip()
-    ]
+    figure = [r for r in rows if (r.get("source_type") or "").upper() == "FOREST_PLOT"]
+    known = [r for r in figure
+             if (r.get("certainty") or "KNOWN").upper() == "KNOWN"
+             and (r.get("effect") or "").strip()]
+    abstain = [r for r in figure
+               if (r.get("certainty") or "").upper() in ("UNRESOLVED", "AMBIGUOUS")]
+    return known, abstain
 
 
 def run_pipeline(paper_dir: Path, provider, model_role: str, model_id: str) -> dict:
@@ -120,7 +126,9 @@ def run_pipeline(paper_dir: Path, provider, model_role: str, model_id: str) -> d
             }
 
 
-def score_paper(paper: str, artifact: dict | None, truth_rows: list[dict]) -> dict:
+def score_paper(paper: str, artifact: dict | None, truth_rows: list[dict],
+                abstain_rows: list[dict] | None = None) -> dict:
+    abstain_rows = abstain_rows or []
     scores = {
         "paper": paper,
         "truth_study_rows": 0, "truth_pooled_rows": 0,
@@ -128,7 +136,11 @@ def score_paper(paper: str, artifact: dict | None, truth_rows: list[dict]) -> di
         "matched": 0, "label_exact": 0, "numeric_exact": 0, "ci_paired": 0,
         "row_assembled": 0, "pooled_misclassified": 0, "false_extractions": 0,
         "abstentions": 0, "provenance_page_correct": 0,
+        "inappropriate_resolutions": 0, "correct_abstentions": 0,
+        "tokens_in": 0, "tokens_out": 0,
+        "by_region_kind": {},
         "unmatched_truth_examples": [], "false_extraction_examples": [],
+        "inappropriate_resolution_examples": [],
     }
     truth_study = [r for r in truth_rows if r.get("row_kind") == "STUDY"]
     truth_pooled = [r for r in truth_rows if r.get("row_kind") in ("OVERALL_TOTAL", "SUBGROUP_TOTAL")]
@@ -140,11 +152,35 @@ def score_paper(paper: str, artifact: dict | None, truth_rows: list[dict]) -> di
     extracted: list[tuple[dict, int]] = []  # (row, region_page)
     for result in artifact.get("results", []):
         page = result["region"]["page_number"]
+        kind = result["region"].get("kind", "?")
+        bucket = scores["by_region_kind"].setdefault(kind, {"rows": 0, "regions": 0})
+        bucket["regions"] += 1
+        bucket["rows"] += len(result.get("rows", []))
         for row in result.get("rows", []):
             extracted.append((row, page))
             scores["abstentions"] += sum(
                 1 for v in row.values() if isinstance(v, str) and v.strip().upper() == "UNRESOLVED"
             )
+
+    # inappropriate resolution: confident values extracted for rows the truth
+    # marks UNRESOLVED/AMBIGUOUS (abstention would be correct there)
+    for t in abstain_rows:
+        t_label = norm_label(t.get("study_label"))
+        for row, _page in extracted:
+            if norm_label(row.get("study_label", "")) == t_label and t_label:
+                confident = any(
+                    (row.get(k) or "").strip() and row.get(k, "").strip().upper() != "UNRESOLVED"
+                    for k in ("effect_value", "ci_lower", "ci_upper")
+                )
+                if confident:
+                    scores["inappropriate_resolutions"] += 1
+                    if len(scores["inappropriate_resolution_examples"]) < 6:
+                        scores["inappropriate_resolution_examples"].append(
+                            f"{row.get('study_label')} → {row.get('effect_value')} "
+                            f"(truth: {t.get('certainty')})"
+                        )
+                else:
+                    scores["correct_abstentions"] += 1
 
     ex_study = [(r, p) for r, p in extracted if r.get("row_kind") == "STUDY_ROW"]
     scores["extracted_study_rows"] = len(ex_study)
@@ -224,10 +260,16 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--provider", choices=["live", "replay"], default="replay")
     ap.add_argument("--papers", nargs="*", default=None)
+    ap.add_argument("--model", default=None,
+                    help="override concrete model id (model-comparison runs; "
+                         "same prompt for every model, per directive)")
+    ap.add_argument("--tag", default="", help="suffix for output filenames")
     args = ap.parse_args()
 
     router = ModelRouter()
     role, model_id = router.resolve_task("forest_plot_vision")
+    if args.model:
+        role, model_id = f"OVERRIDE({role})", args.model
     if args.provider == "live":
         from app.adapters.llm.anthropic_provider import AnthropicVisionProvider
         provider = RecordingVisionProvider(AnthropicVisionProvider(), FIXTURES)
@@ -243,7 +285,7 @@ def main() -> None:
     all_scores, run_meta = [], []
     for paper in papers:
         paper_dir = GOLD / paper
-        truth_rows = truth_figure_rows(paper_dir)
+        truth_rows, abstain_rows = truth_figure_rows(paper_dir)
         if not truth_rows:
             print(f"skip {paper}: no figure-sourced truth rows")
             continue
@@ -251,19 +293,20 @@ def main() -> None:
             run = run_pipeline(paper_dir, provider, role, model_id)
         except Exception as exc:  # provider/fixture failure — report, don't fake
             print(f"{paper}: PIPELINE FAILED — {exc}")
-            all_scores.append(score_paper(paper, None, truth_rows) | {"error": str(exc)[:200]})
+            all_scores.append(score_paper(paper, None, truth_rows, abstain_rows) | {"error": str(exc)[:200]})
             continue
-        scores = score_paper(paper, run.get("artifact"), truth_rows)
+        scores = score_paper(paper, run.get("artifact"), truth_rows, abstain_rows)
         scores |= {k: run[k] for k in ("cost_usd", "latency_ms", "calls", "stage_state")}
         all_scores.append(scores)
         run_meta.append(run)
         print(f"{paper}: matched {scores['matched']}/{scores['truth_study_rows']} "
               f"study rows, cost ${run['cost_usd']}")
 
-    stamp = dt.date.today().isoformat()
+    stamp = dt.date.today().isoformat() + (f"_{args.tag}" if args.tag else "")
     out_dir = ROOT / "corpus" / "baseline"
     (out_dir / f"vision_benchmark_{stamp}.json").write_text(json.dumps({
         "run_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+        "truth_state": "BENCHMARK_AGAINST_PREFREEZE_TRUTH",
         "provider": args.provider, "model_role": role, "model_id": model_id,
         "prompt_version": "1", "papers": all_scores,
     }, indent=2))
@@ -271,22 +314,34 @@ def main() -> None:
     lines = [
         f"# Vision Benchmark — {stamp}",
         "",
+        "**BENCHMARK_AGAINST_PREFREEZE_TRUTH** — truth is AI-reconciled,",
+        "human-unverified; rerun after researcher sign-off changes any value.",
+        "",
         f"Provider: {args.provider} · role {role} → `{model_id}` · prompt v1",
+        "",
+        "Headline metric: FULL_ROW_EXACT_MATCH ('Row asm' below) — label +",
+        "effect + CI pair + weight (where truth has one) all correct",
+        "simultaneously for a truth study row.",
         "",
         "## Per paper",
         "",
-        "| Paper | Recall | Precision | Label | Numeric | CI pair | Row asm | Pooled misclass | False extr | Abstain | Prov. page | Cost | Latency |",
-        "|---|---|---|---|---|---|---|---|---|---|---|---|---|",
+        "| Paper | Recall | Precision | Label | Numeric | CI pair | FULL ROW | Pooled misclass | False extr | Inappr. resolve | Abstain | Prov. page | Cost | Latency |",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
     ]
     for s in all_scores:
         m, ts, es = s["matched"], s["truth_study_rows"], s["extracted_study_rows"]
         lines.append(
             f"| {s['paper']} | {pct(m, ts)} | {pct(m, es)} | {pct(s['label_exact'], m)} "
-            f"| {pct(s['numeric_exact'], m)} | {pct(s['ci_paired'], m)} | {pct(s['row_assembled'], m)} "
-            f"| {s['pooled_misclassified']} | {s['false_extractions']} | {s['abstentions']} "
+            f"| {pct(s['numeric_exact'], m)} | {pct(s['ci_paired'], m)} | **{pct(s['row_assembled'], m)}** "
+            f"| {s['pooled_misclassified']} | {s['false_extractions']} "
+            f"| {s['inappropriate_resolutions']} | {s['abstentions']} "
             f"| {pct(s['provenance_page_correct'], m)} | ${s.get('cost_usd', 0)} "
             f"| {s.get('latency_ms', 0)}ms |"
         )
+    lines += ["", "### By region kind", ""]
+    for s in all_scores:
+        for kind, b in sorted(s.get("by_region_kind", {}).items()):
+            lines.append(f"- {s['paper']} · {kind}: {b['regions']} region(s), {b['rows']} rows extracted")
     total = {k: sum(s[k] for s in all_scores) for k in
              ("matched", "truth_study_rows", "extracted_study_rows", "label_exact",
               "numeric_exact", "ci_paired", "row_assembled", "pooled_misclassified",
