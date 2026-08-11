@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-08-11T17:53:17.706264+00:00",
+  "run_at": "2026-08-11T19:31:26.900364+00:00",
   "pipeline": "pymupdf_baseline v1 (native text spans only)",
   "not_implemented": [
     "analysis identification (no stage yet)",
@@ -175,6 +175,47 @@
       }
     },
     {
+      "paper": "nissen-2007-rosiglitazone",
+      "pdf": "2457.pdf",
+      "parse_state": "SUCCESS",
+      "pages_parsed": 16,
+      "values": {
+        "known_total": 263,
+        "found_on_page": 263,
+        "found_elsewhere": 0,
+        "missing": 0
+      },
+      "pooled": {
+        "known_total": 51,
+        "found_on_page": 51,
+        "found_elsewhere": 0,
+        "missing": 0
+      },
+      "labels": {
+        "known_total": 45,
+        "found_on_page": 45,
+        "found_elsewhere": 0,
+        "missing": 0
+      },
+      "abstained_rows": 1,
+      "missing_examples": [],
+      "values_by_source": {
+        "TABLE": {
+          "known_total": 261,
+          "found_on_page": 261,
+          "found_elsewhere": 0,
+          "missing": 0
+        },
+        "TEXT": {
+          "known_total": 2,
+          "found_on_page": 2,
+          "found_elsewhere": 0,
+          "missing": 0
+        }
+      },
+      "trivial_targets": 434
+    },
+    {
       "paper": "prochaska-2012-varenicline",
       "pdf": "PMC3344735.pdf",
       "parse_state": "SUCCESS",
@@ -281,10 +322,6 @@
     {
       "paper": "goyal-2014-meditation",
       "reason": "holdout \u2014 not run"
-    },
-    {
-      "paper": "nissen-2007-rosiglitazone",
-      "reason": "missing PDF or truth files"
     },
     {
       "paper": "singh-2011-varenicline",

@@ -1,6 +1,6 @@
 # PRIORITY_SPOTCHECK_V1 — Researcher Validation Layer
 
-71 items (seed 20260811). This is the efficient validation
+86 items (seed 20260811). This is the efficient validation
 layer on top of SPOTCHECK_V1 (which remains available in full). Open the
 source PDF at the stated page and confirm the truth value/status matches
 the printed source verbatim. For contradictions, confirm both sides are
@@ -103,6 +103,25 @@ versioned truth revisions (see freeze protocol at bottom).
 | ☐ | A1.1 | Total | effect=-0.62, ci_lower=-0.81, ci_upper=-0.42, weight=100 | KNOWN | 106 | Analysis 1.1 | pooled row (OVERALL_TOTAL) — confirm not mistakable for a study row |
 | ☐ | A1.3 | Martinsen 1985 | effect=0.93, ci_lower=0.74, ci_upper=1.18, weight=1.65, events_treatment=20 | KNOWN | 107 | Analysis 1.3 | random control (text-encoded RevMan forest table) |
 | ☐ | A1.1 | Bonnet 2005 | effect=1.51, ci_lower=0.09, ci_upper=2.93, weight=1.37 | KNOWN | 105 | Analysis 1.1 | random control (text-encoded RevMan forest table) |
+## nissen-2007-rosiglitazone  _(text tables (print, pre-erratum))_
+
+| ✓ | Analysis | Study/row | Truth value(s) | Status | Page | Where | Why selected |
+|---|---|---|---|---|---|---|---|
+| ☐ |  | Total | (no numeric cells) | AMBIGUOUS | 16 | Table 1 (via correction notice) | AMBIGUOUS row — human adjudication required |
+| ☐ |  | NIS-ERR-00 | A: expected: pre-erratum print PDF vs B: actual: post-erratum web PDF + erratum as p16 — VERSION INVERSION: the corpus premise expected this artifact to be the pre-erratum June 14, 2007 print; it is in fact th | KNOWN | corpus/gold meta.json working assumption / source/2457.pdf footer stamps, metadata, and location-by-location check (both passes) |  | contradiction [ERRATUM] — confirm both sides as printed |
+| ☐ |  | NIS-ERR-01 | A: NOT RECOVERABLE (erratum quotes corrected text only) vs B: '38 reported at least one myocardial infarction, and 23 reported at least one death...; 15,565 patients ... rosiglitazone, and 12,282 ... comparator' — Methods para 1, sentences 5-6 (journal p2458 = PDF p2): trial counts and patient totals corrected | KNOWN | pre-erratum print (not in this artifact) / correction notice PDF p16; body PDF p2 (already corrected) |  | contradiction [ERRATUM] — confirm both sides as printed |
+| ☐ |  | NIS-ERR-02 | A: NOT RECOVERABLE from quote (implied 9502 / 5961 via NIS-ERR-03/04) vs B: '9507 patients ... rosiglitazone, and 5960 ... comparator' — Methods para 3, last sentence (PDF p2): 35-trial group patient totals corrected | KNOWN | pre-erratum print (not in this artifact) / correction notice PDF p16; body PDF p2 (already corrected) |  | contradiction [ERRATUM] — confirm both sides as printed |
+| ☐ |  | NIS-ERR-03 | A: 9502 vs B: 9507 (printed '9,507') — Table 1 subtotal, additional-trials group, rosiglitazone (journal p2461 = PDF p5) | KNOWN | pre-erratum print value, stated in erratum / correction notice PDF p16; body PDF p5 (already corrected) |  | contradiction [ERRATUM] — confirm both sides as printed |
+| ☐ |  | NIS-ERR-04 | A: 5961 vs B: 5960 (printed '5,960') — Table 1 subtotal, additional-trials group, control (PDF p5) | KNOWN | pre-erratum print value, stated in erratum / correction notice PDF p16; body PDF p5 (already corrected) |  | contradiction [ERRATUM] — confirm both sides as printed |
+| ☐ |  | NIS-ERR-05 | A: NOT STATED in erratum (derived: 15,560 / 12,283) vs B: 15,565 / 12,282 — Table 1 totals (PDF p5) | KNOWN | pre-erratum print (derived from NIS-ERR-03/04 deltas) / correction notice PDF p16; body PDF p5 (already corrected) |  | contradiction [ERRATUM] — confirm both sides as printed |
+| ☐ | A01;A03 | 49653/137 | events_treatment=1, events_control=2 | CORRECTED-VERSION | 10 | Table 3 | erratum/corrigendum-affected value — verify both versions preserved |
+| ☐ | A04 | DREAM | effect=1.65, ci_lower=0.74, ci_upper=3.68, events_treatment=15, events_control=9 | CORRECTED-VERSION | 12 | Table 4 | erratum/corrigendum-affected value — verify both versions preserved |
+| ☐ |  | SB-712753/007 | events_treatment=0, events_control=0 | CORRECTED-VERSION | 10 | Table 3 | erratum/corrigendum-affected value — verify both versions preserved |
+| ☐ | A02;A06 | 49653/145 | events_treatment=1, events_control=0 | CORRECTED-VERSION | 10 | Table 3 | erratum/corrigendum-affected value — verify both versions preserved |
+| ☐ | A01;A04 | DREAM | events_treatment=15, events_control=9 | CORRECTED-VERSION | 11 | Table 3 (Continued) | erratum/corrigendum-affected value — verify both versions preserved |
+| ☐ | A01 | Total | events_treatment=86, events_control=72 | KNOWN | 11 | Table 3 (Continued) | pooled row (OVERALL_TOTAL) — confirm not mistakable for a study row |
+| ☐ |  | 49653/093 | (no numeric cells) | KNOWN | 4 | Table 1 | random control (text tables (print, pre-erratum)) |
+| ☐ | A01;A03 | BRL 49653/347 | events_treatment=2, events_control=0 | KNOWN | 10 | Table 3 | random control (text tables (print, pre-erratum)) |
 
 ---
 ## Freeze protocol

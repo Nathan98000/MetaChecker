@@ -154,7 +154,7 @@ Maassen-audited discrepancies · C1 Ekkekakis critique (qualitative).
 | hahn-2024-exercise-intake | ✓ | Double-pass reconciled (zero numeric disagreements); 92 effect rows incl. re-split shared-control variants, 14 analyses, 16 contradictions (headline: Thivel 2015 SE/CI swap in Fig 4). DRAFT. |
 | driessen-2015-nih-psychotherapy | ✓ | Double-pass reconciled (zero numeric disagreements); 113 effect rows incl. 19 SOURCE_DATA_NOT_PUBLICLY_VERIFIABLE unpublished rows (6 suppressed → UNRESOLVED), 31 analyses, 23 contradictions. DRAFT. |
 | cooney-2013-exercise-depression | ✓ | Double-pass reconciled (zero numeric disagreements); deliberate 3-analysis subset (1.1 primary SMD, 1.3 largest dichotomous RR, 1.2 only follow-up) with full 23-analysis inventory documented; 78 effect rows, 13 contradictions. RevMan forests are fully text-encoded (100% native reachability — the corpus's text-forest counter-case). DRAFT. |
-| nissen-2007-rosiglitazone | ✗ (NEJM PDF is browser-gated; needs manual download) | Truth pending. |
+| nissen-2007-rosiglitazone | ✓ (researcher-provided; POST-ERRATUM web version with erratum appended as p16) | Double-pass reconciled (zero numeric disagreements; 28 sanity checks); 141 effect rows, 17 analyses, 22 contradictions incl. the itemized erratum pairs and a new un-errata'd Table1-vs-Table3 enrollment conflict (49653/330). AS_PUBLISHED/AS_CORRECTED strictly separated. DRAFT. |
 | holdout ×3 | not acquired (deliberate) | Untouched per holdout rules. |
 
 Truth v0 provenance: two independent extraction passes per paper (blind),

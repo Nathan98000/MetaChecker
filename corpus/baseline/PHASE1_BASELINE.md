@@ -137,3 +137,14 @@ plots (Yang 1-9%, Prochaska 1%, Hahn 1%, Driessen 15%) are not. The
 detect_figure_regions `needs_vision` signal (interior-text presence) routes
 exactly this distinction, so Cooney-style documents will bypass vision
 entirely — the escalation architecture is validated in both directions.
+
+## Addendum 4 (same day): Nissen 2007 truth set added — development corpus complete (7/7)
+
+Nissen (NEJM, text-encoded count tables): 263/263 (100%) study values natively
+on-page — consistent with the encoding conclusion; no figures exist in the
+paper at all. Materially new information: none for routing — the text-vs-image
+split stands. New for the corpus: the provided PDF is the POST-erratum web
+version (erratum appended as p16), so the version-pair fixture runs
+AS_CORRECTED (tables) vs AS_PUBLISHED (erratum-documented print values);
+Table-4 pre-erratum cells are unrecoverable from this artifact and remain open
+until a true print PDF is obtained. Prior conclusions unchanged.

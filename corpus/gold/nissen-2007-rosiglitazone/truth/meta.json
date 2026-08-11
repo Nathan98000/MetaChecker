@@ -4,5 +4,7 @@
   "oa_url": "https://www.nejm.org/doi/full/10.1056/NEJMoa072761",
   "corpus_role": "development",
   "rationale": "Itemized erratum (NEJMx070038); zero cells; print-vs-web version divergence. PDF requires manual browser download (bot-protected).",
-  "source_status": "PDF_NOT_YET_ACQUIRED"
+  "source_status": "ACQUIRED_POST_ERRATUM_WEB_VERSION",
+  "source_note": "source/2457.pdf is the POST-erratum web version (every page stamped 'Downloaded from www.nejm.org on July 30, 2007'; modDate 2007-07-30) with the full erratum (N Engl J Med 2007;357:100) appended as PDF page 16. This inverts the original working assumption that the file was the pre-erratum print; all 12 erratum-listed locations in the body carry corrected values (verified independently by both extraction passes).",
+  "version_pair_todo": "Acquiring the true PRINT PDF (pre-erratum, June 14, 2007 issue) remains desirable to complete the version-pair fixture; this file alone cannot verify which OTHER print values differed beyond what the erratum lists (only the Table 1 additional-trials subtotal originals 9502/5961 are stated; pre-erratum Table 4 cells are not recoverable from this artifact)."
 }

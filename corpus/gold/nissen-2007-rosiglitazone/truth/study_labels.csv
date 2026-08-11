@@ -1,0 +1,46 @@
+analysis_id,study_label_verbatim,appears_in,source_pages,certainty,note
+,49653/011,TABLE,4;6;10,KNOWN,Table 1 text layer prints fused superscript form '49653/0115-7' (refs 5-7)
+,49653/020,TABLE,4;7;10,KNOWN,"Table 1 text layer prints fused superscript form '49653/0205,6' (refs 5,6)"
+,49653/024,TABLE,4;7;10,KNOWN,"Table 1 text layer prints fused superscript form '49653/0245,6,8' (refs 5,6,8)"
+,49653/093,TABLE,4;7;10,KNOWN,"Table 1 text layer prints fused superscript form '49653/0935,6,9' (refs 5,6,9)"
+,49653/094,TABLE,4;7;10,KNOWN,"Table 1 text layer prints fused superscript form '49653/0945,6,9,10' (refs 5,6,9,10)"
+,100684,TABLE,4;6;10,KNOWN,Table 1 text layer prints fused superscript form '1006845' (refs 5)
+,49653/143,TABLE,4;6;10,KNOWN,Table 1 text layer prints fused superscript form '49653/1435' (refs 5)
+,49653/211,TABLE,4;6;10,KNOWN,Table 1 text layer prints fused superscript form '49653/2115' (refs 5)
+,49653/284,TABLE,4;6;10,KNOWN,"Table 1 text layer prints fused superscript form '49653/2845,11' (refs 5,11)"
+,712753/008,TABLE,4;6;10,KNOWN,Table 1 text layer prints fused superscript form '712753/0085' (refs 5); printed WITHOUT 'SB-' prefix unlike SB-712753/002/003/007/009 (same sponsor family)
+,AVM100264,TABLE,4;6;10,KNOWN,Table 1 text layer prints fused superscript form 'AVM1002645' (refs 5); registry NCT00359112 printed in Table 1
+,BRL 49653C/185,TABLE,4;10,KNOWN,Table 1 text layer prints fused superscript form 'BRL 49653C/1855' (refs 5); Table 2 (p6) prints no-space variant 'BRL49653C/185' - separate variant row below
+,BRL 49653/334,TABLE,4;6;10,KNOWN,Table 1 text layer prints fused superscript form 'BRL 49653/3345' (refs 5)
+,BRL 49653/347,TABLE,4;6;10,KNOWN,Table 1 text layer prints fused superscript form 'BRL 49653/3475' (refs 5); registry NCT00054782 printed in Table 1
+,49653/015,TABLE,4;6;10,KNOWN,"Table 1 text layer prints fused superscript form '49653/0155,12' (refs 5,12)"
+,49653/079,TABLE,4;7;10,KNOWN,Table 1 text layer prints fused superscript form '49653/0795' (refs 5)
+,49653/080,TABLE,4;7;10,KNOWN,"Table 1 text layer prints fused superscript form '49653/0805,13' (refs 5,13)"
+,49653/082,TABLE,4;7;10,KNOWN,"Table 1 text layer prints fused superscript form '49653/0825,14' (refs 5,14)"
+,49653/085,TABLE,4;7;10,KNOWN,Table 1 text layer prints fused superscript form '49653/0855' (refs 5)
+,49653/095,TABLE,4;7;10,KNOWN,Table 1 text layer prints fused superscript form '49653/0955' (refs 5)
+,49653/097,TABLE,4;7;10,KNOWN,Table 1 text layer prints fused superscript form '49653/0975' (refs 5)
+,49653/125,TABLE,5;7;10,KNOWN,"Table 1 text layer prints fused superscript form '49653/1255,15' (refs 5,15)"
+,49653/127,TABLE,5;7;10,KNOWN,Table 1 text layer prints fused superscript form '49653/1275' (refs 5)
+,49653/128,TABLE,5;8;10,KNOWN,Table 1 text layer prints fused superscript form '49653/1285' (refs 5)
+,49653/134,TABLE,5;8;10,KNOWN,Table 1 text layer prints fused superscript form '49653/1345' (refs 5)
+,49653/135,TABLE,5;8;10,KNOWN,Table 1 text layer prints fused superscript form '49653/1355' (refs 5)
+,49653/136,TABLE,5;8;10,KNOWN,Table 1 text layer prints fused superscript form '49653/1365' (refs 5)
+,49653/145,TABLE,5;8;10,KNOWN,"Table 1 text layer prints fused superscript form '49653/1455,16' (refs 5,16)"
+,49653/147,TABLE,5;8;10,KNOWN,"Table 1 text layer prints fused superscript form '49653/1475,17' (refs 5,17); this trial's Table 1 rosiglitazone arm cell prints verbatim typo 'Rosiglitazone and sufonylurea' (control cell 'Sulfonylurea' correct)"
+,49653/162,TABLE,5;8;10,KNOWN,"Table 1 text layer prints fused superscript form '49653/1625,18' (refs 5,18)"
+,49653/234,TABLE,5;8;10,KNOWN,Table 1 text layer prints fused superscript form '49653/2345' (refs 5)
+,49653/330,TABLE,5;8;10,KNOWN,Table 1 text layer prints fused superscript form '49653/3305' (refs 5); patient counts differ Table 1 vs Table 3 (NIS-CON-1)
+,49653/331,TABLE,5;9;10,KNOWN,Table 1 text layer prints fused superscript form '49653/3315' (refs 5)
+,49653/137,TABLE,5;9;10,KNOWN,Table 1 text layer prints fused superscript form '49653/1375' (refs 5); listed out of numeric order (after 49653/331) in both Table 1 and Table 3
+,SB-712753/002,TABLE,5;9;10,KNOWN,Table 1 text layer prints fused superscript form 'SB-712753/0025' (refs 5)
+,SB-712753/003,TABLE,5;8;10,KNOWN,Table 1 text layer prints fused superscript form 'SB-712753/0035' (refs 5)
+,SB-712753/007,TABLE,5;9;10,KNOWN,Table 1 text layer prints fused superscript form 'SB-712753/0075' (refs 5)
+,SB-712753/009,TABLE,5;9;10,KNOWN,Table 1 text layer prints fused superscript form 'SB-712753/0095' (refs 5)
+,49653/132,TABLE,5;9;10,KNOWN,"Table 1 text layer prints fused superscript form '49653/1325,19' (refs 5,19)"
+,AVA100193,TABLE,5;9;11,KNOWN,Table 1 text layer prints fused superscript form 'AVA1001935' (refs 5)
+,DREAM,TEXT;TABLE,2;3;5;9;11;12;16,KNOWN,Tables 1-4 + text; expanded p2 and Table 1 footnote p5 as 'Diabetes Reduction Assessment with Ramipiril and Rosiglitazone Medication' - 'Ramipiril' [sic] AS PRINTED (ref 20 p14 spells 'ramipril'); NCT00095654; also named in erratum p16; Table 1 text layer 'DREAM20'
+,ADOPT,TEXT;TABLE,2;3;5;9;11;12;16,KNOWN,Tables 1-4 + text; expanded p2 and Table 1 footnote p5 as 'A Diabetes Outcome Prevention Trial' AS PRINTED (trial's actual name is 'A Diabetes Outcome Progression Trial'); NCT00279045; also named in erratum p16; Table 1 text layer 'ADOPT21'
+,BRL49653C/185,TABLE,6,KNOWN,Table 2 spelling variant WITHOUT space; same trial as 'BRL 49653C/185' (Tables 1 and 3)
+,RECORD,TEXT,13,KNOWN,'Rosiglitazone Evaluated for Cardiac Outcomes and Regulation of Glycaemia in Diabetes'; ongoing trial discussed in text; NOT part of the meta-analysis
+,PROACTIVE,TEXT;REFERENCES,13;15,KNOWN,'Prospective Pioglitazone Clinical Trial in Macrovascular Events (PROACTIVE)'; pioglitazone context in Discussion (HR 0.90 P=0.095 primary; HR 0.84 P=0.027 secondary); NOT part of the meta-analysis; ref 31 on p15
