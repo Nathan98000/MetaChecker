@@ -1,0 +1,87 @@
+{
+  "run_at": "2026-08-13T17:04:00.949411+00:00",
+  "truth_state": "BENCHMARK_AGAINST_PREFREEZE_TRUTH",
+  "provider": "live",
+  "model_role": "OVERRIDE(COMPLEX_EXTRACTION_MODEL)",
+  "model_id": "claude-sonnet-5",
+  "prompt_version": "1",
+  "papers": [
+    {
+      "paper": "hahn-2024-exercise-intake",
+      "truth_study_rows": 72,
+      "truth_pooled_rows": 13,
+      "extracted_study_rows": 205,
+      "matched": 72,
+      "label_exact": 72,
+      "numeric_exact": 0,
+      "ci_paired": 60,
+      "row_assembled": 0,
+      "pooled_misclassified": 0,
+      "false_extractions": 0,
+      "abstentions": 0,
+      "provenance_page_correct": 53,
+      "inappropriate_resolutions": 0,
+      "correct_abstentions": 0,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "by_region_kind": {
+        "VECTOR_CLUSTER": {
+          "rows": 256,
+          "regions": 6
+        }
+      },
+      "unmatched_truth_examples": [],
+      "false_extraction_examples": [],
+      "inappropriate_resolution_examples": [],
+      "numeric_norm": 72,
+      "cost_usd": 0.6674,
+      "latency_ms": 270417,
+      "calls": 10,
+      "stage_state": "SUCCESS"
+    },
+    {
+      "paper": "driessen-2015-nih-psychotherapy",
+      "truth_study_rows": 89,
+      "truth_pooled_rows": 18,
+      "extracted_study_rows": 89,
+      "matched": 84,
+      "label_exact": 84,
+      "numeric_exact": 84,
+      "ci_paired": 81,
+      "row_assembled": 79,
+      "pooled_misclassified": 0,
+      "false_extractions": 4,
+      "abstentions": 9,
+      "provenance_page_correct": 84,
+      "inappropriate_resolutions": 0,
+      "correct_abstentions": 0,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "by_region_kind": {
+        "RASTER_IMAGE": {
+          "rows": 109,
+          "regions": 6
+        }
+      },
+      "unmatched_truth_examples": [
+        "[unnamed unpublished] 0.31 (p13)",
+        "[unnamed unpublished] 0.31 (p14)",
+        "[unnamed unpublished] 0.44 (p14)",
+        "[unnamed unpublished] -0.24 (p14)",
+        "[unnamed unpublished] 0.56 (p15)"
+      ],
+      "false_extraction_examples": [
+        " 0,31 (p14)",
+        "UNRESOLVED 0,44 (p14)",
+        "UNRESOLVED -0,24 (p14)",
+        "Unpublished 0,56 (p15)"
+      ],
+      "inappropriate_resolution_examples": [],
+      "numeric_norm": 84,
+      "cost_usd": 0.5146,
+      "latency_ms": 213257,
+      "calls": 8,
+      "stage_state": "SUCCESS"
+    }
+  ]
+}

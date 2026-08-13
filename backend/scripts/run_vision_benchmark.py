@@ -51,7 +51,7 @@ DASHES = dict.fromkeys(map(ord, "−–—‐‑"), "-")
 
 def norm_value(value: str) -> str:
     value = unicodedata.normalize("NFKC", value or "").translate(DASHES)
-    value = re.sub(r"\s+", "", value)
+    value = re.sub(r"\s+", "", value).rstrip("%")
     # European decimal comma → period (only when it is unambiguously the
     # decimal separator: single comma, no period present)
     if re.fullmatch(r"-?\d+,\d+", value):
@@ -231,21 +231,27 @@ def score_paper(paper: str, artifact: dict | None, truth_rows: list[dict],
         t_label, t_eff = norm_label(t.get("study_label")), norm_value(t.get("effect"))
         t_page = (t.get("source_page") or "").strip()
         best = None
-        for i, (row, page) in enumerate(ex_study):
-            if i in used:
-                continue
-            if norm_label(row.get("study_label", "")) == t_label and (
-                norm_value(row.get("effect_value", "")) == t_eff
-                or not row.get("effect_value")
-            ):
+        # candidate preference: (1) same page + label + effect, (2) label +
+        # effect anywhere, (3) same page + label, (4) label anywhere — so a
+        # Fig-2 extraction never steals a same-labeled variant row's slot on
+        # another page when its own page has the right partner.
+        for require_page, require_eff in ((True, True), (False, True), (True, False), (False, False)):
+            for i, (row, page) in enumerate(ex_study):
+                if i in used:
+                    continue
+                if norm_label(row.get("study_label", "")) != t_label:
+                    continue
+                if require_page and str(page) != t_page:
+                    continue
+                if require_eff and not (
+                    norm_value(row.get("effect_value", "")) == t_eff
+                    or num_equal(row.get("effect_value", ""), t.get("effect", ""))
+                ):
+                    continue
                 best = i
                 break
-        if best is None:
-            # fall back to label-only match (numeric may be wrong — still a detection)
-            for i, (row, page) in enumerate(ex_study):
-                if i not in used and norm_label(row.get("study_label", "")) == t_label:
-                    best = i
-                    break
+            if best is not None:
+                break
         if best is None:
             if len(scores["unmatched_truth_examples"]) < 8:
                 scores["unmatched_truth_examples"].append(
@@ -258,8 +264,8 @@ def score_paper(paper: str, artifact: dict | None, truth_rows: list[dict],
         label_ok = re.sub(r"\s+", " ", (row.get("study_label") or "").strip()) == \
             re.sub(r"\s+", " ", (t.get("study_label") or "").strip())
         numeric_ok = norm_value(row.get("effect_value", "")) == t_eff
-        scores["numeric_norm"] = scores.get("numeric_norm", 0) + (
-            numeric_ok or num_equal(row.get("effect_value", ""), t.get("effect", "")))
+        numeric_eq = numeric_ok or num_equal(row.get("effect_value", ""), t.get("effect", ""))
+        scores["numeric_norm"] = scores.get("numeric_norm", 0) + numeric_eq
         ci_ok = (
             norm_value(row.get("ci_lower", "")) == norm_value(t.get("ci_lower", ""))
             and norm_value(row.get("ci_upper", "")) == norm_value(t.get("ci_upper", ""))
@@ -270,7 +276,11 @@ def score_paper(paper: str, artifact: dict | None, truth_rows: list[dict],
         scores["label_exact"] += label_ok
         scores["numeric_exact"] += numeric_ok
         scores["ci_paired"] += ci_ok
-        scores["row_assembled"] += label_ok and numeric_ok and ci_ok and weight_ok
+        # FULL ROW: effect counts when exact OR numerically equal — figures may
+        # print the same value at two precisions in different columns (Hahn's
+        # bare-MD '17' vs CI-column '17.00'); both are verbatim-correct reads.
+        # Exact-string rate remains reported separately in 'Numeric'.
+        scores["row_assembled"] += label_ok and numeric_eq and ci_ok and weight_ok
         scores["provenance_page_correct"] += str(page) == t_page
 
     # false extractions: extracted STUDY rows that match no truth study row

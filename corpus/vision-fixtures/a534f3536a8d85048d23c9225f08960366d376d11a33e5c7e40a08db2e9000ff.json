@@ -1,6 +1,6 @@
 {
-  "text": "```json\n{\n  \"region_readable\": false,\n  \"columns_seen\": [],\n  \"axis_labels\": [],\n  \"reading_notes\": \"This is a PRISMA flow diagram showing the systematic review and meta-analysis selection process, not a forest plot or data extraction table. It displays study identification, screening, and inclusion stages with counts of records at each step. No effect measures, confidence intervals, or numerical study data are presented in tabular form suitable for JSON extraction as defined in the schema.\",\n  \"rows\": []\n}\n```",
+  "text": "```json\n{\n  \"region_readable\": false,\n  \"columns_seen\": [],\n  \"axis_labels\": [],\n  \"reading_notes\": \"This is not a forest plot. The image shows a PRISMA systematic review flow diagram depicting the identification, screening, and inclusion process for studies in a meta-analysis. It contains four main stages: Identification (9582 records from multiple databases), Records removed before screening (2522 duplicates), Screening (7060 records screened, 7011 excluded), and Full-text assessment (49 assessed, 27 excluded, 22 included). No numerical data suitable for forest plot transcription is present.\",\n  \"rows\": []\n}\n```",
   "model_id": "claude-haiku-4-5-20251001",
   "input_tokens": 2124,
-  "output_tokens": 123
+  "output_tokens": 161
 }

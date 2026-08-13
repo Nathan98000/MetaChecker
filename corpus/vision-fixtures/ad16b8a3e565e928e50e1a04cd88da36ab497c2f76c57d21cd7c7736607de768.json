@@ -1,6 +1,6 @@
 {
-  "text": "```json\n{\n  \"region_readable\": false,\n  \"columns_seen\": [],\n  \"axis_labels\": [],\n  \"reading_notes\": \"This image is a journal article header/title section (REVIEW, Open Access, title text 'Impact of physical activity on caloric...') not a forest plot or data figure.\",\n  \"rows\": []\n}\n```",
+  "text": "{\"region_readable\": false, \"columns_seen\": [], \"axis_labels\": [], \"reading_notes\": \"This is a title/header section of a journal article, not a forest plot or data figure. It contains only the text 'REVIEW', 'Open Access', and the beginning of an article title 'Impact of physical activity on caloric...'. No data rows are present.\", \"rows\": []}",
   "model_id": "claude-sonnet-5",
   "input_tokens": 1091,
-  "output_tokens": 112
+  "output_tokens": 122
 }

@@ -102,4 +102,5 @@ class AnthropicVisionProvider(VisionProvider):
             output_tokens=output_tokens,
             latency_ms=latency_ms,
             est_cost_usd=est,
+            raw_meta={"stop_reason": message.stop_reason},
         )

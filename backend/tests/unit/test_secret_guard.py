@@ -67,11 +67,13 @@ def test_recorded_fixtures_never_contain_key(tmp_path, monkeypatch):
 
 def test_provider_failure_without_key_names_no_secret(monkeypatch):
     monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
-    from app.adapters.llm.anthropic_provider import AnthropicVisionProvider
+    from app.adapters.llm import anthropic_provider as ap
     from app.adapters.llm.provider import ProviderFailure
 
+    # neutralize the backend/.env fallback so the test is key-independent
+    monkeypatch.setattr(ap, "_key_from_env_file", lambda: None)
     with pytest.raises(ProviderFailure) as err:
-        AnthropicVisionProvider()
+        ap.AnthropicVisionProvider()
     assert "sk-ant" not in str(err.value)
 
 

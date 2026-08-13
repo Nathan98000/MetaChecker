@@ -1,0 +1,103 @@
+{
+  "run_at": "2026-08-13T17:14:14.717905+00:00",
+  "truth_state": "BENCHMARK_AGAINST_PREFREEZE_TRUTH",
+  "provider": "live",
+  "model_role": "OVERRIDE(COMPLEX_EXTRACTION_MODEL)",
+  "model_id": "claude-haiku-4-5-20251001",
+  "prompt_version": "1",
+  "papers": [
+    {
+      "paper": "hahn-2024-exercise-intake",
+      "truth_study_rows": 72,
+      "truth_pooled_rows": 13,
+      "extracted_study_rows": 205,
+      "matched": 69,
+      "label_exact": 69,
+      "numeric_exact": 0,
+      "ci_paired": 68,
+      "row_assembled": 66,
+      "pooled_misclassified": 0,
+      "false_extractions": 25,
+      "abstentions": 0,
+      "provenance_page_correct": 68,
+      "inappropriate_resolutions": 0,
+      "correct_abstentions": 0,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "by_region_kind": {
+        "VECTOR_CLUSTER": {
+          "rows": 243,
+          "regions": 6
+        }
+      },
+      "unmatched_truth_examples": [
+        "Bozinosvki 2009 NW 15min Treadmill 18.00 (p22)",
+        "Bozinosvki 2009 NW 45min Treadmill -23.00 (p22)",
+        "Saunders 2013 NW wallking + PA -89.00 (p22)"
+      ],
+      "false_extraction_examples": [
+        "Bozinovski 2009 NW 15min Treadmill 18 (p22)",
+        "Bozinovski 2009 NW 45min Treadmill -23 (p22)",
+        "Miguet 2018 OB 15min HIT 115 (p22)",
+        "Saunders 2013 NW walking + PA -89 (p22)",
+        "Bozinovski 2009 NW 15min Treadmill 18 (p22)",
+        "Bozinovski 2009 NW 45min Treadmill -23 (p22)",
+        "Saunders 2013 NW walking + PA -89 (p22)",
+        "Bozinovski 2009 NW 15min Treadmill 18 (p23)"
+      ],
+      "inappropriate_resolution_examples": [],
+      "numeric_norm": 69,
+      "cost_usd": 0.2488,
+      "latency_ms": 271234,
+      "calls": 12,
+      "stage_state": "SUCCESS"
+    },
+    {
+      "paper": "driessen-2015-nih-psychotherapy",
+      "truth_study_rows": 89,
+      "truth_pooled_rows": 18,
+      "extracted_study_rows": 23,
+      "matched": 19,
+      "label_exact": 19,
+      "numeric_exact": 7,
+      "ci_paired": 6,
+      "row_assembled": 3,
+      "pooled_misclassified": 0,
+      "false_extractions": 4,
+      "abstentions": 3,
+      "provenance_page_correct": 9,
+      "inappropriate_resolutions": 0,
+      "correct_abstentions": 0,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "by_region_kind": {
+        "RASTER_IMAGE": {
+          "rows": 29,
+          "regions": 6
+        }
+      },
+      "unmatched_truth_examples": [
+        "Arean, 2010 0.39 (p13)",
+        "Beutler, 1991 0.09 (p13)",
+        "Hayden, 2012 0.41 (p13)",
+        "O'Hara, 2000 1.14 (p13)",
+        "Spinelli, 2003 0.84 (p13)",
+        "Strachowski, 2008 1.58 (p13)",
+        "Swartz, 2008 0.85 (p13)",
+        "Thompson, 1987 0.41 (p13)"
+      ],
+      "false_extraction_examples": [
+        "O'Hain, 2000 1.14 (p13)",
+        "Stachowski, 2008 1.58 (p13)",
+        "Thompson, 1967 0.41 (p13)",
+        "These, unpublished -0.51 (p15)"
+      ],
+      "inappropriate_resolution_examples": [],
+      "numeric_norm": 7,
+      "cost_usd": 0.1697,
+      "latency_ms": 217071,
+      "calls": 12,
+      "stage_state": "PARTIAL_SUCCESS"
+    }
+  ]
+}

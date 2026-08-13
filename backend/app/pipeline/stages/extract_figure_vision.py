@@ -36,6 +36,11 @@ PARSER_VERSION = "1"
 STAGE_ID = "extract_figure_vision"
 RENDER_DPI = 220
 CACHE_NS = "vision_forest"
+# Dense forest plots (40+ rows x 10+ verbatim fields) need far more than the
+# SDK-default output budget: benchmark 2026-08-13 showed nearly every dense
+# region truncating at exactly 4000 output tokens mid-JSON. 16k gives ~3x
+# headroom over the largest observed figure.
+MAX_OUTPUT_TOKENS = 16000
 
 # injected at worker/benchmark setup; keeps the stage testable offline
 _provider: VisionProvider | None = None
@@ -89,6 +94,7 @@ def _interpret_region(ctx: StageContext, doc_row, region, image_png: bytes) -> d
         image_png=image_png,
         model_id=_model_id,
         model_role=_model_role,
+        max_tokens=MAX_OUTPUT_TOKENS,
     )
     cached = ctx.session.scalar(
         select(CacheEntry).where(
@@ -111,9 +117,15 @@ def _interpret_region(ctx: StageContext, doc_row, region, image_png: bytes) -> d
             prompt=prompt, prompt_id=request.prompt_id,
             prompt_version=request.prompt_version, image_png=image_png,
             model_id=_model_id, model_role=_model_role,
+            max_tokens=MAX_OUTPUT_TOKENS,
         )
         response = _provider.interpret_image(req)  # ProviderFailure propagates
         result = forest_schema.validate_response(response.text)
+        truncated = response.raw_meta.get("stop_reason") == "max_tokens"
+        if truncated:
+            result.ok = False
+            result.errors.append(
+                f"response truncated at max_tokens={MAX_OUTPUT_TOKENS} — output incomplete")
         outcome = "OK" if result.ok else "INVALID_OUTPUT"
         _log_call(
             ctx.session, project_id=doc_row.project_id, outcome=outcome,

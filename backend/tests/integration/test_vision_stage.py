@@ -217,3 +217,36 @@ def test_model_router_resolves_and_rejects():
     assert role == "COMPLEX_EXTRACTION_MODEL" and model == "claude-fable-5"
     with pytest.raises(KeyError):
         router.resolve_task("nonexistent_task")
+
+
+def test_stage_requests_large_output_budget_and_flags_truncation(
+    session, documents_dir, project
+):
+    """Dense forest plots truncated at the SDK default budget (benchmark
+    2026-08-13); the stage must request a large budget and treat a
+    max_tokens-stopped response as invalid, never half-parse it."""
+    from app.adapters.llm.provider import LLMResponse, VisionProvider
+
+    class TruncatingProvider(VisionProvider):
+        provider_name = "trunc"
+
+        def __init__(self):
+            self.calls = []
+
+        def interpret_image(self, request):
+            self.calls.append(request)
+            return LLMResponse(
+                text='{"rows": [{"row_kind": "STUDY_ROW", "study_label": "A"',
+                model_id="trunc-model", output_tokens=request.max_tokens,
+                raw_meta={"stop_reason": "max_tokens"},
+            )
+
+    provider = TruncatingProvider()
+    doc = _setup(session, documents_dir, project, provider)
+    drain(session, documents_dir)
+
+    assert all(c.max_tokens >= 16000 for c in provider.calls)
+    result = _rows_artifact(session, doc.id).payload["results"][0]
+    assert result["status"] == "INVALID_OUTPUT"
+    assert result["rows"] == []
+    assert any("truncated" in e for e in result.get("errors", []))
