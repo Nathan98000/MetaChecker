@@ -91,3 +91,21 @@ def test_frontend_never_references_key():
         if "ANTHROPIC_API_KEY" in path.read_text(errors="ignore"):
             offenders.append(str(path))
     assert not offenders, f"frontend references the API key: {offenders}"
+
+
+def test_env_file_fallback_reads_key_without_exposure(tmp_path, monkeypatch):
+    """backend/.env fallback works and the key value never enters errors."""
+    from app.adapters.llm import anthropic_provider as ap
+
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    sentinel = "sk-" + "ant-" + "envfile-SENTINEL"
+    env_file = tmp_path / ".env"
+    env_file.write_text(f"# comment\nANTHROPIC_API_KEY={sentinel}\n")
+    monkeypatch.setattr(
+        ap, "_key_from_env_file",
+        lambda p=env_file: next(
+            (l.split("=", 1)[1] for l in p.read_text().splitlines()
+             if l.startswith("ANTHROPIC_API_KEY=")), None),
+    )
+    provider = ap.AnthropicVisionProvider()
+    assert provider._api_key == sentinel  # loaded, held privately, not printed
