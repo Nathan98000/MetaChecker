@@ -302,6 +302,25 @@ class WorkflowIssue(Base):
     resolved_at: Mapped[dt.datetime | None] = mapped_column(nullable=True)
 
 
+class ExtractedCell(Base):
+    """Maps a stable extracted-cell identity (document + row + field) to the
+    DataPoint that carries its provenance chain. Created lazily on the first
+    researcher action (verify/correct); the DataPoint's first revision is
+    always the verbatim extracted value, so originals are unlosable (A18)."""
+
+    __tablename__ = "extracted_cell"
+    __table_args__ = (UniqueConstraint("document_id", "cell_key"),)
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uuid7)
+    project_id: Mapped[str] = mapped_column(ForeignKey("project.id"), index=True)
+    document_id: Mapped[str] = mapped_column(ForeignKey("document.id"), index=True)
+    cell_key: Mapped[str] = mapped_column(String(64))
+    field: Mapped[str] = mapped_column(String(40))
+    row_label: Mapped[str] = mapped_column(String(500))
+    data_point_id: Mapped[str] = mapped_column(ForeignKey("data_point.id"))
+    created_at: Mapped[dt.datetime] = mapped_column(default=_now)
+
+
 class AuditFinding(Base):
     """Scientifically meaningful audit result (doc 05; kept strictly separate
     from workflow_issue). v1 scope: internal cross-representation findings."""

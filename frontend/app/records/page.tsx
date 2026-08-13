@@ -10,6 +10,14 @@ import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { api, API_BASE } from "@/lib/api";
 
+interface CellReview {
+  data_point_id: string;
+  review_state: string;
+  current_value: string;
+  original_value: string;
+  corrected: boolean;
+}
+
 interface TableRecord {
   study_label: string;
   row_kind: string;
@@ -24,6 +32,8 @@ interface TableRecord {
   line_bbox: number[];
   cell_bboxes: Record<string, number[] | null>;
   acquisition_method: string;
+  cell_keys: Record<string, string>;
+  review: Record<string, CellReview>;
 }
 
 function kindBadge(kind: string) {
@@ -37,14 +47,16 @@ function RecordsView() {
   const docId = params.get("id");
   const [records, setRecords] = useState<TableRecord[]>([]);
   const [pageDims, setPageDims] = useState<Record<number, { width: number; height: number }>>({});
-  const [selected, setSelected] = useState<TableRecord | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number>(-1);
+  const [busy, setBusy] = useState(false);
+  const selected = selectedIndex >= 0 ? records[selectedIndex] ?? null : null;
   const [renderedSize, setRenderedSize] = useState<{ w: number; h: number } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pdfRef = useRef<any>(null);
   const renderedPage = useRef<number>(0);
 
-  useEffect(() => {
+  const loadRecords = useCallback(() => {
     if (!docId) return;
     fetch(`${API_BASE}/documents/${docId}/records`)
       .then(async (r) => {
@@ -53,6 +65,10 @@ function RecordsView() {
       })
       .then((d) => setRecords(d.records))
       .catch((e) => setError(e.message));
+  }, [docId]);
+
+  useEffect(() => {
+    loadRecords();
     fetch(`${API_BASE}/documents/${docId}/pages`)
       .then((r) => r.json())
       .then((pages) => {
@@ -64,7 +80,6 @@ function RecordsView() {
 
   const showSource = useCallback(
     async (record: TableRecord) => {
-      setSelected(record);
       if (!docId || !canvasRef.current) return;
       const pdfjs = await import("pdfjs-dist");
       pdfjs.GlobalWorkerOptions.workerSrc = new URL(
@@ -86,6 +101,71 @@ function RecordsView() {
     },
     [docId]
   );
+
+  const act = async (action: "verify" | "correct", field: string) => {
+    if (!docId || selectedIndex < 0) return;
+    let payload: Record<string, unknown> = { record_index: selectedIndex, field };
+    if (action === "correct") {
+      const current = (selected as any)?.[field] ?? "";
+      const corrected = window.prompt(
+        `Correct ${field.replace("_", " ")} (enter the value exactly as printed in the source):`,
+        String(current)
+      );
+      if (corrected == null || !corrected.trim()) return;
+      const note = window.prompt("Why is this a correction? (optional note)") || undefined;
+      payload = { ...payload, corrected_value: corrected.trim(), note };
+    }
+    setBusy(true);
+    try {
+      const r = await fetch(`${API_BASE}/documents/${docId}/cells/${action}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!r.ok) throw new Error((await r.json()).what_happened || "Action failed");
+      loadRecords();
+    } catch (e: any) {
+      setError(e.message);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const undo = async (review: CellReview) => {
+    setBusy(true);
+    try {
+      await fetch(`${API_BASE}/datapoints/${review.data_point_id}/restore`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ revision_no: 1, note: "restored original extraction" }),
+      });
+      loadRecords();
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const cellDisplay = (r: TableRecord, field: string) => {
+    const review = r.review?.[field];
+    const raw = (r as any)[field];
+    if (review?.corrected) {
+      return (
+        <span title={`extracted: ${review.original_value}`}>
+          <s className="muted">{review.original_value}</s>{" "}
+          <strong>{review.current_value}</strong>
+        </span>
+      );
+    }
+    return raw ?? "—";
+  };
+
+  const rowBadge = (r: TableRecord) => {
+    const states = Object.values(r.review || {});
+    if (states.some((s) => s.corrected)) return <span className="status warn">✎ corrected</span>;
+    if (states.some((s) => s.review_state === "VERIFIED"))
+      return <span className="status ok">✓ verified</span>;
+    return null;
+  };
 
   if (!docId) return <div className="error-box">No document selected.</div>;
 
@@ -130,16 +210,17 @@ function RecordsView() {
                   key={i}
                   className="span-item"
                   style={{ cursor: "pointer", background: selected === r ? "var(--accent-soft)" : undefined }}
-                  onClick={() => showSource(r)}
+                  onClick={() => { setSelectedIndex(i); showSource(r); }}
                 >
-                  <td>{r.study_label}</td>
+                  <td>{r.study_label} {rowBadge(r)}</td>
                   <td>{kindBadge(r.row_kind)}</td>
                   <td style={{ textAlign: "center" }}>{r.effect_measure ?? "—"}</td>
-                  <td style={{ textAlign: "center" }}>{r.effect_value ?? "—"}</td>
+                  <td style={{ textAlign: "center" }}>{cellDisplay(r, "effect_value")}</td>
                   <td style={{ textAlign: "center" }}>
-                    {r.ci_lower != null && r.ci_upper != null ? `[${r.ci_lower}, ${r.ci_upper}]` : "—"}
+                    {r.ci_lower != null && r.ci_upper != null
+                      ? <>[{cellDisplay(r, "ci_lower")}, {cellDisplay(r, "ci_upper")}]</> : "—"}
                   </td>
-                  <td style={{ textAlign: "center" }}>{r.weight ? `${r.weight}%` : "—"}</td>
+                  <td style={{ textAlign: "center" }}>{r.weight ? <>{cellDisplay(r, "weight")}%</> : "—"}</td>
                   <td style={{ textAlign: "center" }}>{r.page_number}</td>
                 </tr>
               ))}
@@ -152,10 +233,45 @@ function RecordsView() {
             {highlight && <div className="pdf-highlight" style={highlight} />}
           </div>
           {selected && (
-            <p className="muted" style={{ marginBottom: 0 }}>
-              {selected.study_label} — page {selected.page_number}
-              {selected.effect_value ? ` · ${selected.effect_value}` : ""}
-            </p>
+            <div style={{ marginTop: "0.5rem" }}>
+              <p className="muted" style={{ margin: "0 0 0.4rem" }}>
+                {selected.study_label} — page {selected.page_number}
+                {selected.effect_value ? ` · ${selected.effect_value}` : ""}
+              </p>
+              <div className="row">
+                <button className="secondary" disabled={busy}
+                        onClick={() => act("verify", "effect_value")}>
+                  ✓ Verify effect
+                </button>
+                <button className="secondary" disabled={busy}
+                        onClick={() => act("correct", "effect_value")}>
+                  ✎ Correct effect
+                </button>
+                <button className="secondary" disabled={busy}
+                        onClick={() => act("correct", "ci_lower")}>
+                  ✎ CI lower
+                </button>
+                <button className="secondary" disabled={busy}
+                        onClick={() => act("correct", "ci_upper")}>
+                  ✎ CI upper
+                </button>
+                {Object.values(selected.review || {}).some((s) => s.corrected) && (
+                  <button
+                    className="secondary" disabled={busy}
+                    onClick={() => {
+                      const corrected = Object.values(selected.review).find((s) => s.corrected);
+                      if (corrected) undo(corrected);
+                    }}
+                  >
+                    ↺ Restore original
+                  </button>
+                )}
+              </div>
+              <p className="muted" style={{ margin: "0.4rem 0 0", fontSize: "0.78rem" }}>
+                Corrections never overwrite the extracted value — the original
+                stays in this row&apos;s history.
+              </p>
+            </div>
           )}
         </div>
       </div>

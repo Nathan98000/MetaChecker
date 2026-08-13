@@ -161,6 +161,11 @@ function ProjectView() {
                 <a className="button secondary" href={`/document/?id=${d.id}`}>
                   Source evidence
                 </a>
+                {d.stages["identify_analyses"]?.state === "SUCCESS" && (
+                  <a className="button" href={`/analyses/?id=${d.id}`}>
+                    Analyses
+                  </a>
+                )}
                 {d.stages["assemble_table_records"]?.state === "SUCCESS" && (
                   <a className="button" href={`/records/?id=${d.id}`}>
                     Published data
