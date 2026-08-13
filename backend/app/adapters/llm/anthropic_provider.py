@@ -56,7 +56,10 @@ class AnthropicVisionProvider(VisionProvider):
             )
         import anthropic
 
-        self._client = anthropic.Anthropic(api_key=self._api_key)
+        # SDK-level exponential-backoff retries absorb transient 429/529s;
+        # anything that still escapes becomes a ProviderFailure and rides the
+        # job queue's own at-least-once retry.
+        self._client = anthropic.Anthropic(api_key=self._api_key, max_retries=5)
 
     def interpret_image(self, request: VisionRequest) -> LLMResponse:
         start = time.perf_counter()

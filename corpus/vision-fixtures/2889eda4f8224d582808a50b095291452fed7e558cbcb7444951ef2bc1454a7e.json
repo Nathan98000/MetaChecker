@@ -1,0 +1,6 @@
+{
+  "text": "{\"region_readable\": true, \"columns_seen\": [], \"axis_labels\": [], \"reading_notes\": \"This is a PRISMA flow diagram, not a forest plot. It shows study selection process, not effect sizes/statistics.\", \"rows\": []}",
+  "model_id": "claude-sonnet-5",
+  "input_tokens": 1313,
+  "output_tokens": 84
+}

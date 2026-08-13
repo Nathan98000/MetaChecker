@@ -1,0 +1,6 @@
+{
+  "text": "```json\n{\n  \"region_readable\": false,\n  \"columns_seen\": [],\n  \"axis_labels\": [],\n  \"reading_notes\": \"This image is a journal article header/title section (REVIEW, Open Access, title text 'Impact of physical activity on caloric...') not a forest plot or data figure.\",\n  \"rows\": []\n}\n```",
+  "model_id": "claude-sonnet-5",
+  "input_tokens": 1091,
+  "output_tokens": 112
+}

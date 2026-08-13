@@ -1,0 +1,6 @@
+{
+  "text": "```json\n{\n  \"region_readable\": false,\n  \"columns_seen\": [],\n  \"axis_labels\": [],\n  \"reading_notes\": \"This is a PRISMA flow diagram showing literature search and study selection process, not a forest plot or meta-analysis results table. It displays inclusion/exclusion criteria and final study counts, but contains no effect measures, confidence intervals, weights, or comparable numerical data suitable for forest plot transcription.\",\n  \"rows\": []\n}\n```",
+  "model_id": "claude-haiku-4-5-20251001",
+  "input_tokens": 1105,
+  "output_tokens": 111
+}

@@ -1,0 +1,6 @@
+{
+  "text": "```json\n{\n  \"region_readable\": false,\n  \"columns_seen\": [],\n  \"axis_labels\": [],\n  \"reading_notes\": \"This is a PRISMA flow diagram showing study selection and inclusion/exclusion criteria across identification, screening, eligibility, and inclusion stages. It is not a forest plot or meta-analysis results table with effect measures, confidence intervals, or statistical data. The figure documents the flow of grant numbers and studies through the selection process, with counts and reasons for exclusion at each stage.\",\n  \"rows\": []\n}\n```",
+  "model_id": "claude-haiku-4-5-20251001",
+  "input_tokens": 2116,
+  "output_tokens": 128
+}

@@ -1,0 +1,6 @@
+{
+  "text": "```json\n{\n  \"region_readable\": false,\n  \"columns_seen\": [],\n  \"axis_labels\": [],\n  \"reading_notes\": \"This is a PRISMA flow diagram showing study selection process, not a forest plot or meta-analysis results table. It depicts the number of records at each stage: 198 identified, 74 duplicates removed, 124 screened, exclusions by title/abstract, 28 full-text assessed, 5 conference abstracts and 1 irrelevant study excluded, resulting in 22 studies included in meta-analysis.\",\n  \"rows\": []\n}\n```",
+  "model_id": "claude-haiku-4-5-20251001",
+  "input_tokens": 1116,
+  "output_tokens": 145
+}

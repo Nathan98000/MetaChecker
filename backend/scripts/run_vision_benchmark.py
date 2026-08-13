@@ -51,7 +51,20 @@ DASHES = dict.fromkeys(map(ord, "−–—‐‑"), "-")
 
 def norm_value(value: str) -> str:
     value = unicodedata.normalize("NFKC", value or "").translate(DASHES)
-    return re.sub(r"\s+", "", value)
+    value = re.sub(r"\s+", "", value)
+    # European decimal comma → period (only when it is unambiguously the
+    # decimal separator: single comma, no period present)
+    if re.fullmatch(r"-?\d+,\d+", value):
+        value = value.replace(",", ".")
+    return value
+
+
+def num_equal(a: str, b: str) -> bool:
+    """Normalized numeric equality (17 == 17.00) — reported alongside exact."""
+    try:
+        return float(norm_value(a)) == float(norm_value(b))
+    except (ValueError, TypeError):
+        return False
 
 
 def norm_label(label: str) -> str:
@@ -99,9 +112,30 @@ def run_pipeline(paper_dir: Path, provider, model_role: str, model_id: str) -> d
                 queue.enqueue(
                     session, project_id=project.id, stage_id=mod.STAGE_ID,
                     work_item_ref=doc.id, idempotency_key=mod.idempotency_key(doc.sha256),
+                    max_attempts=5,
                 )
             session.commit()
-            drain(session, Path(tmp) / "docs")
+            # drain, waiting out retry-backoff windows (transient 529s) up to
+            # a hard cap so overload never silently yields an empty benchmark
+            import datetime as _dt
+            import time as _time
+            deadline = _time.monotonic() + 1800
+            while _time.monotonic() < deadline:
+                drain(session, Path(tmp) / "docs")
+                pending = session.scalars(
+                    select(models.Job).where(models.Job.state.in_(["QUEUED", "RUNNING"]))
+                ).all()
+                if not pending:
+                    break
+                def _aware(ts):
+                    return ts if ts.tzinfo else ts.replace(tzinfo=_dt.timezone.utc)
+
+                now = _dt.datetime.now(_dt.timezone.utc)
+                waits = [
+                    (_aware(j.available_at) - now).total_seconds()
+                    for j in pending if j.state == "QUEUED" and j.available_at
+                ]
+                _time.sleep(min(max(max(waits, default=1.0), 0.5), 30.0))
             artifact = session.scalar(
                 select(models.ParseArtifact).where(
                     models.ParseArtifact.document_id == doc.id,
@@ -149,9 +183,15 @@ def score_paper(paper: str, artifact: dict | None, truth_rows: list[dict],
     if not artifact:
         return scores
 
+    # scope to pages the truth covers (untruthed sensitivity/funnel figures on
+    # other pages are out of scope — neither true nor false)
+    truth_pages = {p for r in (truth_rows + abstain_rows)
+                   for p in re.findall(r"\d+", r.get("source_page") or "")}
     extracted: list[tuple[dict, int]] = []  # (row, region_page)
     for result in artifact.get("results", []):
         page = result["region"]["page_number"]
+        if truth_pages and str(page) not in truth_pages:
+            continue
         kind = result["region"].get("kind", "?")
         bucket = scores["by_region_kind"].setdefault(kind, {"rows": 0, "regions": 0})
         bucket["regions"] += 1
@@ -218,6 +258,8 @@ def score_paper(paper: str, artifact: dict | None, truth_rows: list[dict],
         label_ok = re.sub(r"\s+", " ", (row.get("study_label") or "").strip()) == \
             re.sub(r"\s+", " ", (t.get("study_label") or "").strip())
         numeric_ok = norm_value(row.get("effect_value", "")) == t_eff
+        scores["numeric_norm"] = scores.get("numeric_norm", 0) + (
+            numeric_ok or num_equal(row.get("effect_value", ""), t.get("effect", "")))
         ci_ok = (
             norm_value(row.get("ci_lower", "")) == norm_value(t.get("ci_lower", ""))
             and norm_value(row.get("ci_upper", "")) == norm_value(t.get("ci_upper", ""))
@@ -332,7 +374,7 @@ def main() -> None:
         m, ts, es = s["matched"], s["truth_study_rows"], s["extracted_study_rows"]
         lines.append(
             f"| {s['paper']} | {pct(m, ts)} | {pct(m, es)} | {pct(s['label_exact'], m)} "
-            f"| {pct(s['numeric_exact'], m)} | {pct(s['ci_paired'], m)} | **{pct(s['row_assembled'], m)}** "
+            f"| {pct(s['numeric_exact'], m)}/{pct(s.get('numeric_norm', 0), m)} | {pct(s['ci_paired'], m)} | **{pct(s['row_assembled'], m)}** "
             f"| {s['pooled_misclassified']} | {s['false_extractions']} "
             f"| {s['inappropriate_resolutions']} | {s['abstentions']} "
             f"| {pct(s['provenance_page_correct'], m)} | ${s.get('cost_usd', 0)} "
