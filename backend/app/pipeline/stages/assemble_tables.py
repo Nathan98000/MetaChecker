@@ -60,9 +60,109 @@ def norm_text(text: str) -> str:
     return text.translate(DASHES)
 
 
+def _split_columns(spans: list[dict], page_width: float) -> list[list[dict]]:
+    """Detect a two-column layout via a span-crossing test: split at the
+    boundary that almost no span straddles (robust to narrow gutters, unlike
+    midpoint histograms). Multi-column merging glued prose onto table cells
+    (Yang Table 2, 2026-08-13)."""
+    if len(spans) < 20:
+        return [spans]
+    best_boundary, best_crossers = None, len(spans)
+    x = 0.30 * page_width
+    while x <= 0.70 * page_width:
+        crossers = sum(1 for s in spans
+                       if s["bbox_native"][0] < x - 2 and s["bbox_native"][2] > x + 2)
+        if crossers < best_crossers:
+            best_crossers, best_boundary = crossers, x
+        x += 5.0
+    if best_boundary is None or best_crossers > max(2, 0.02 * len(spans)):
+        return [spans]
+    left = [s for s in spans
+            if (s["bbox_native"][0] + s["bbox_native"][2]) / 2 < best_boundary]
+    right = [s for s in spans
+             if (s["bbox_native"][0] + s["bbox_native"][2]) / 2 >= best_boundary]
+    if min(len(left), len(right)) < len(spans) * 0.15:
+        return [spans]
+    # Splitting is only meaningful when at least one side is genuine prose
+    # flow (a body-text column). Pure-table pages (RevMan forests, effect
+    # tables) present a low-crossing internal gutter too — splitting them
+    # severs label cells from value cells (Cooney regression, 2026-08-13).
+    def prose_lines(side_spans):
+        count = 0
+        for line in _build_column_lines(side_spans):
+            words = [w for w in line["text"].split() if re.fullmatch(r"[A-Za-z][A-Za-z'\-]{2,}", w)]
+            if len(words) >= 6:
+                count += 1
+        return count
+    if max(prose_lines(left), prose_lines(right)) < 5:
+        return [spans]
+    return [left, right]
+
+
+DATA_LINE = None  # set below (depends on regexes defined later in module)
+
+
+def _is_data_line(text: str) -> bool:
+    return bool(BRACKET_CI.search(text) or PAREN_CI.search(text)
+                or PAREN_DASH_CI.search(text) or RANGE_ROW.search(text)
+                or STUDY_HEADER.search(text) or SUMMARY_HEADER.search(text))
+
+
+def _has_own_label(text: str) -> bool:
+    """Line starts with an alphabetic label token (a self-contained row)."""
+    first = text.strip().split(" ", 1)[0]
+    return bool(re.match(r"[A-Za-z≤≥<>≤≥]", first)) and len(first) >= 2
+
+
 def build_lines(page: dict) -> list[dict]:
-    """Cluster spans into visual lines by y-center; keep span bboxes."""
-    spans = sorted(page["spans"], key=lambda s: (s["bbox_native"][1], s["bbox_native"][0]))
+    """Cluster spans into visual lines — column-aware, but PER LINE.
+
+    A page can be two-column prose AND contain full-width tables (Cooney
+    p106: footnotes beside RevMan rows). Global split severs table rows
+    (label left, values right); global no-split glues prose onto table cells
+    (Yang p4). Resolution: build both versions; for each y-band where the
+    unsplit line carries a data pattern, keep the split lines only if a
+    single side holds a complete row (own label + pattern); otherwise keep
+    the unsplit line whole."""
+    width = page.get("width") or max(
+        (s["bbox_native"][2] for s in page["spans"]), default=595)
+    columns = _split_columns(page["spans"], width)
+    unsplit = _build_column_lines(page["spans"])
+    if len(columns) == 1:
+        return unsplit
+
+    split_lines = []
+    for column_spans in columns:
+        split_lines.extend(_build_column_lines(column_spans))
+    split_lines.sort(key=lambda l: (l["y"], l["spans"][0]["bbox_native"][0]))
+
+    chosen: list[dict] = []
+    consumed_split: set[int] = set()
+    for line in unsplit:
+        overlapping = [i for i, sl in enumerate(split_lines)
+                       if abs(sl["y"] - line["y"]) <= 3.0]
+        if _is_data_line(line["text"]):
+            complete_sides = [i for i in overlapping
+                              if _is_data_line(split_lines[i]["text"])
+                              and _has_own_label(split_lines[i]["text"])]
+            if complete_sides:
+                for i in overlapping:
+                    if i not in consumed_split:
+                        consumed_split.add(i)
+                        chosen.append(split_lines[i])
+            else:
+                chosen.append(line)
+                consumed_split.update(overlapping)
+        else:
+            for i in overlapping:
+                if i not in consumed_split:
+                    consumed_split.add(i)
+                    chosen.append(split_lines[i])
+    return sorted(chosen, key=lambda l: (l["y"], l["spans"][0]["bbox_native"][0]))
+
+
+def _build_column_lines(spans: list[dict]) -> list[dict]:
+    spans = sorted(spans, key=lambda s: (s["bbox_native"][1], s["bbox_native"][0]))
     lines: list[dict] = []
     for span in spans:
         y_mid = (span["bbox_native"][1] + span["bbox_native"][3]) / 2
@@ -75,10 +175,34 @@ def build_lines(page: dict) -> list[dict]:
             lines.append({"y": y_mid, "spans": [span]})
         else:
             placed["spans"].append(span)
+    lines.sort(key=lambda l: l["y"])
+    # merge orphan wrapped-cell fragments upward: a short, purely numeric-ish
+    # line whose spans sit horizontally inside the previous line's extent and
+    # vertically adjacent belongs to that line ("1.12" / "-1.40" split cells)
+    merged: list[dict] = []
     for line in lines:
+        if merged:
+            prev = merged[-1]
+            gap = line["y"] - prev["y"]
+            prev_x0 = min(s["bbox_native"][0] for s in prev["spans"])
+            prev_x1 = max(s["bbox_native"][2] for s in prev["spans"])
+            is_fragment = (
+                len(line["spans"]) <= 2
+                and 0 < gap <= 10.0
+                and all(NUMERICISH_SPAN.match(norm_text(s["text"].strip()))
+                        for s in line["spans"])
+                and all(s["bbox_native"][0] >= prev_x0 - 2 and s["bbox_native"][2] <= prev_x1 + 2
+                        for s in line["spans"])
+                and len(prev["spans"]) >= 2
+            )
+            if is_fragment:
+                prev["spans"].extend(line["spans"])
+                continue
+        merged.append(line)
+    for line in merged:
         line["spans"].sort(key=lambda s: s["bbox_native"][0])
         line["text"] = norm_text(" ".join(s["text"].strip() for s in line["spans"]).strip())
-    return sorted(lines, key=lambda l: l["y"])
+    return merged
 
 
 def _bbox_union(bboxes: list[list[float]]) -> list[float]:
@@ -108,6 +232,21 @@ def classify_label(label: str) -> str:
 
 
 STUDY_HEADER = re.compile(r"study\s+or\s+sub\s*group|^\s*study\b.*event", re.IGNORECASE)
+# subgroup-analysis tables: a header naming an effect measure plus a CI column
+# (e.g. Yang Table 2: "Variables No. of studies HR 95%CI I2(%) Ph"), or a bare
+# measure-word column header on its own short line (Nissen: "Odds Ratio")
+SUBGROUP_HEADER = re.compile(
+    r"\b(HR|OR|RR|RD|SMD|MD)\b.{0,40}95\s*%?\s*CI", re.IGNORECASE)
+BARE_MEASURE_HEADER = re.compile(
+    r"^\s*(peto\s+odds\s+ratio|odds\s+ratio|hazard\s+ratio|risk\s+ratio|"
+    r"relative\s+risk|risk\s+difference)\s*(\(95%\s*CI\))?\s*$", re.IGNORECASE)
+# paren-dash CI: "1.43 (1.03-1.98)" (Nissen tables); the interior dash
+# distinguishes it from single-value parens like "(0.57)" event percentages
+PAREN_DASH_CI = re.compile(
+    rf"({NUM})\s*\(\s*(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)\s*\)")
+# dash-range CI following an effect value: "2.11 1.59-2.38" (subgroup tables);
+# both bounds non-negative to avoid eating subtractions/negative effects
+RANGE_ROW = re.compile(rf"({NUM})\s+(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)(?!\d*%)")
 SUMMARY_HEADER = re.compile(r"outcome\s+or\s+sub\s*group", re.IGNORECASE)
 NUMERICISH_SPAN = re.compile(
     rf"^[\s\d\.\(\)\[\],%:/\-]+$|^{NUM}$|^\d+/\d+$"
@@ -177,6 +316,57 @@ def parse_page(page: dict) -> list[dict]:
             context = "STUDY_TABLE"
             context_measures = header_measures(text)
             continue
+        if SUBGROUP_HEADER.search(text) and not BRACKET_CI.search(text) \
+                and not PAREN_CI.search(text) and len(text) < 120:
+            context = "SUBGROUP_TABLE"
+            m = SUBGROUP_HEADER.search(text)
+            context_measures = [m.group(1).upper()]
+            continue
+        bare = BARE_MEASURE_HEADER.match(text)
+        if bare and context != "STUDY_TABLE":
+            # bare measure-word column header (Nissen) — but inside an active
+            # RevMan study table the same words are just column subheaders and
+            # must not hijack the context (Cooney 1.3 regression, 2026-08-13)
+            context = "SUBGROUP_TABLE"
+            context_measures = [header_measures(text)[0]] if header_measures(text) else []
+            continue
+        if context == "SUBGROUP_TABLE":
+            m = RANGE_ROW.search(text) or PAREN_DASH_CI.search(text)
+            if m and len(text) >= 8:
+                label = span_label(line)
+                if label and not re.fullmatch(r"[\d\W]+", label):
+                    # column hints: k = integer right before the effect;
+                    # i2/p = first numbers after the CI range
+                    pre = text[:m.start()].strip().split()
+                    k_hint = pre[-1] if pre and re.fullmatch(r"\d{1,3}", pre[-1]) else None
+                    post = re.findall(rf"{NUM}|<\s*0?\.\d+", text[m.end():])
+                    kind = classify_label(label)
+                    if kind == "STUDY_ROW":
+                        # rows in subgroup/summary-OR tables are pooled (or
+                        # per-trial aggregate) estimates, never study rows
+                        kind = "SUBGROUP_TOTAL"
+                    records.append({
+                        "k_studies_hint": k_hint,
+                        "i2_hint": post[0] if post else None,
+                        "p_hint": post[1] if len(post) > 1 else None,
+                        "study_label": label,
+                        "row_kind": kind,
+                        "effect_measure": context_measures[0] if context_measures else None,
+                        "effect_value": m.group(1),
+                        "ci_lower": m.group(2), "ci_upper": m.group(3),
+                        "weight": None, "events_treatment": None, "events_control": None,
+                        "page_number": page["page_number"],
+                        "line_bbox": _bbox_union([s["bbox_native"] for s in line["spans"]]),
+                        "cell_bboxes": {
+                            "label": line["spans"][0]["bbox_native"] if line["spans"] else None,
+                            "effect": _find_token_bbox(line, m.group(1)),
+                        },
+                        "acquisition_method": "LAYOUT_EXTRACTION",
+                    })
+                continue
+            if len(text) > 150 or (not RANGE_ROW.search(text) and len(text.split()) > 20):
+                context = None  # left the table (prose resumed)
+                continue
         measures_here = header_measures(text)
         if len(measures_here) >= 2 and not BRACKET_CI.search(text) and not PAREN_CI.search(text):
             # secondary header row naming the effect columns (e.g. Prochaska)

@@ -133,6 +133,7 @@ async def upload_document(request: Request, project_id: str, file: UploadFile):
             assemble_tables,
             detect_figures,
             extract_figure_vision,
+            identify_analyses,
             reconcile_representations,
         )
 
@@ -140,6 +141,7 @@ async def upload_document(request: Request, project_id: str, file: UploadFile):
         if os.environ.get("ANTHROPIC_API_KEY"):
             stages_to_run.append(extract_figure_vision)
         stages_to_run.append(reconcile_representations)
+        stages_to_run.append(identify_analyses)
         for mod in stages_to_run:
             queue.enqueue(
                 session,
@@ -322,6 +324,19 @@ def get_table_records(request: Request, document_id: str):
                 http_status=409,
             )
         return {"records": artifact.payload["records"]}
+
+
+@router.get("/documents/{document_id}/analyses")
+def get_analyses(request: Request, document_id: str):
+    """Identified analyses with pooled values and effect-row memberships."""
+    with _session(request) as session:
+        artifact = session.scalar(
+            select(ParseArtifact)
+            .where(ParseArtifact.document_id == document_id,
+                   ParseArtifact.kind == "ANALYSES")
+            .order_by(ParseArtifact.created_at.desc())
+        )
+        return {"analyses": artifact.payload["analyses"] if artifact else []}
 
 
 @router.get("/documents/{document_id}/reconciliation")
