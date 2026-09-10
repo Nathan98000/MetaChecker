@@ -1,0 +1,138 @@
+{
+  "run_at": "2026-08-13T17:32:20.913599+00:00",
+  "truth_state": "BENCHMARK_AGAINST_PREFREEZE_TRUTH",
+  "identifier": "structural_analysis_identifier v1",
+  "results": [
+    {
+      "paper": "yang-2018-sii",
+      "truth_structured": 19,
+      "truth_other": 0,
+      "detected": 17,
+      "matched": 17,
+      "i2_ok": 3,
+      "i2_present": 14,
+      "measure_ok": 17,
+      "model_ok": 0,
+      "member_count_ok": 17,
+      "member_truth_stated": 17,
+      "false_analyses": 0,
+      "missed": [
+        "A18 OS 1.21[1.00,1.43]",
+        "A19 OS 1.32[1.14,1.51]"
+      ],
+      "false_examples": []
+    },
+    {
+      "paper": "prochaska-2012-varenicline",
+      "truth_structured": 5,
+      "truth_other": 5,
+      "detected": 5,
+      "matched": 5,
+      "i2_ok": 0,
+      "i2_present": 4,
+      "measure_ok": 2,
+      "model_ok": 0,
+      "member_count_ok": 2,
+      "member_truth_stated": 5,
+      "false_analyses": 0,
+      "missed": [],
+      "false_examples": []
+    },
+    {
+      "paper": "macnamara-2014-practice",
+      "truth_structured": 2,
+      "truth_other": 19,
+      "detected": 0,
+      "matched": 0,
+      "i2_ok": 0,
+      "i2_present": 0,
+      "measure_ok": 0,
+      "model_ok": 0,
+      "member_count_ok": 0,
+      "member_truth_stated": 0,
+      "false_analyses": 0,
+      "missed": [
+        "MAC-OV-2014 Overall practice-performance .35[.30,.39]",
+        "MAC-OV-2018 Overall practice-performance .38[.33,.42]"
+      ],
+      "false_examples": []
+    },
+    {
+      "paper": "hahn-2024-exercise-intake",
+      "truth_structured": 13,
+      "truth_other": 1,
+      "detected": 13,
+      "matched": 13,
+      "i2_ok": 0,
+      "i2_present": 13,
+      "measure_ok": 13,
+      "model_ok": 13,
+      "member_count_ok": 13,
+      "member_truth_stated": 13,
+      "false_analyses": 0,
+      "missed": [],
+      "false_examples": []
+    },
+    {
+      "paper": "driessen-2015-nih-psychotherapy",
+      "truth_structured": 18,
+      "truth_other": 13,
+      "detected": 18,
+      "matched": 18,
+      "i2_ok": 0,
+      "i2_present": 18,
+      "measure_ok": 18,
+      "model_ok": 0,
+      "member_count_ok": 8,
+      "member_truth_stated": 18,
+      "false_analyses": 0,
+      "missed": [],
+      "false_examples": []
+    },
+    {
+      "paper": "cooney-2013-exercise-depression",
+      "truth_structured": 3,
+      "truth_other": 4,
+      "detected": 22,
+      "matched": 3,
+      "i2_ok": 0,
+      "i2_present": 3,
+      "measure_ok": 3,
+      "model_ok": 0,
+      "member_count_ok": 3,
+      "member_truth_stated": 3,
+      "false_analyses": 19,
+      "missed": [],
+      "false_examples": [
+        "Comparison 1 Exercise versus 'control', Outcome 4  0.45[0.06,0.83]",
+        "Comparison 2 Exercise versus psychological therapi -0.03[-0.32,0.26]",
+        "Comparison 2 Exercise versus psychological therapi 1.08[0.95,1.24]",
+        "Comparison 3 Exercise versus bright light therapy, -6.4[-10.2,-2.6]",
+        "Comparison 4 Exercise versus pharmacological treat -0.11[-0.34,0.12]"
+      ]
+    },
+    {
+      "paper": "nissen-2007-rosiglitazone",
+      "truth_structured": 16,
+      "truth_other": 1,
+      "detected": 8,
+      "matched": 8,
+      "i2_ok": 0,
+      "i2_present": 0,
+      "measure_ok": 8,
+      "model_ok": 0,
+      "member_count_ok": 0,
+      "member_truth_stated": 6,
+      "false_analyses": 0,
+      "missed": [
+        "A09 myocardial infarction 1.14[0.70,1.86]",
+        "A10 myocardial infarction 1.24[0.78,1.98]",
+        "A11 myocardial infarction 2.78[0.58,13.3]",
+        "A12 myocardial infarction 1.80[0.95,3.39]",
+        "A13 death from cardiovascular causes 1.13[0.34,3.71]",
+        "A14 death from cardiovascular causes 1.42[0.60,3.33]"
+      ],
+      "false_examples": []
+    }
+  ]
+}

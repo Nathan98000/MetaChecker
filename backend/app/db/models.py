@@ -302,6 +302,83 @@ class WorkflowIssue(Base):
     resolved_at: Mapped[dt.datetime | None] = mapped_column(nullable=True)
 
 
+class ExtractedCell(Base):
+    """Maps a stable extracted-cell identity (document + row + field) to the
+    DataPoint that carries its provenance chain. Created lazily on the first
+    researcher action (verify/correct); the DataPoint's first revision is
+    always the verbatim extracted value, so originals are unlosable (A18)."""
+
+    __tablename__ = "extracted_cell"
+    __table_args__ = (UniqueConstraint("document_id", "cell_key"),)
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uuid7)
+    project_id: Mapped[str] = mapped_column(ForeignKey("project.id"), index=True)
+    document_id: Mapped[str] = mapped_column(ForeignKey("document.id"), index=True)
+    cell_key: Mapped[str] = mapped_column(String(64))
+    field: Mapped[str] = mapped_column(String(40))
+    row_label: Mapped[str] = mapped_column(String(500))
+    data_point_id: Mapped[str] = mapped_column(ForeignKey("data_point.id"))
+    created_at: Mapped[dt.datetime] = mapped_column(default=_now)
+
+
+class AuditFinding(Base):
+    """Scientifically meaningful audit result (doc 05; kept strictly separate
+    from workflow_issue). v1 scope: internal cross-representation findings."""
+
+    __tablename__ = "audit_finding"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uuid7)
+    project_id: Mapped[str] = mapped_column(ForeignKey("project.id"), index=True)
+    finding_kind: Mapped[str] = mapped_column(String(40))  # CONTRADICTION | ...
+    taxonomy_code: Mapped[str] = mapped_column(String(60))
+    severity: Mapped[str] = mapped_column(String(20), default="REVIEW")
+    certainty: Mapped[str] = mapped_column(String(20), default="POSSIBLE")
+    review_status: Mapped[str] = mapped_column(String(30), default="SYSTEM_FLAGGED")
+    title: Mapped[str] = mapped_column(String(300))
+    description: Mapped[str] = mapped_column(Text)
+    document_id: Mapped[str | None] = mapped_column(ForeignKey("document.id"), nullable=True)
+    evidence: Mapped[dict | None] = mapped_column(JSON, nullable=True)  # both sides + provenance
+    detected_by: Mapped[str] = mapped_column(String(80))
+    created_at: Mapped[dt.datetime] = mapped_column(default=_now)
+
+
+class ExternalCallLog(Base):
+    """Every external service call: privacy surface (§58) + cost tracking (§63).
+    Append-only. An API failure is recorded here, never as domain fact."""
+
+    __tablename__ = "external_call_log"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uuid7)
+    project_id: Mapped[str | None] = mapped_column(ForeignKey("project.id"), nullable=True, index=True)
+    provider: Mapped[str] = mapped_column(String(60))
+    model_role: Mapped[str | None] = mapped_column(String(40), nullable=True)
+    model_id: Mapped[str | None] = mapped_column(String(100), nullable=True)  # concrete (A16)
+    stage_id: Mapped[str | None] = mapped_column(String(60), nullable=True)
+    purpose: Mapped[str] = mapped_column(String(200))
+    payload_bytes: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    input_tokens: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    output_tokens: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    est_cost_usd: Mapped[float | None] = mapped_column(Float, nullable=True)
+    latency_ms: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    outcome: Mapped[str] = mapped_column(String(40))  # OK | API_FAILURE | INVALID_OUTPUT | CACHE_HIT
+    created_at: Mapped[dt.datetime] = mapped_column(default=_now)
+
+
+class CacheEntry(Base):
+    """External-result cache (§62): keyed by content hash, timestamped,
+    intentionally refreshable via `stale`."""
+
+    __tablename__ = "cache_entry"
+    __table_args__ = (UniqueConstraint("namespace", "key_hash"),)
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uuid7)
+    namespace: Mapped[str] = mapped_column(String(60))
+    key_hash: Mapped[str] = mapped_column(String(64))
+    payload: Mapped[dict] = mapped_column(JSON)
+    created_at: Mapped[dt.datetime] = mapped_column(default=_now)
+    stale: Mapped[bool] = mapped_column(default=False)
+
+
 class ReviewEvent(Base):
     """Append-only researcher action log (§21; doc 02 §8)."""
 

@@ -1,0 +1,6 @@
+{
+  "text": "```json\n{\n  \"region_readable\": false,\n  \"columns_seen\": [],\n  \"axis_labels\": [],\n  \"reading_notes\": \"Only the title/header region of the document is visible. The image shows 'REVIEW' (top left), 'Open Access' (top right), and the main title 'Impact of physical activity on caloric' with a 'Check for updates' button (top right). No forest plot data, columns, rows, or axis information is present in this cropped region.\",\n  \"rows\": []\n}\n```",
+  "model_id": "claude-haiku-4-5-20251001",
+  "input_tokens": 894,
+  "output_tokens": 130
+}

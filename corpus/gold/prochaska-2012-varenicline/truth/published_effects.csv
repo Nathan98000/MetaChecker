@@ -1,0 +1,138 @@
+effect_id,analysis_id,row_kind,study_label,version,effect_measure,effect,ci_lower,ci_upper,se,variance,weight_pct,n_treatment,n_control,events_treatment,events_control,subgroup,timepoint,source_page,source_type,source_table,source_figure,row_label,effect_norm,ci_lower_norm,ci_upper_norm,certainty,supersedes,note
+F2-01,A1,STUDY,Fagerström 2010,AS_PUBLISHED,RD (proportion),-0.0046,-0.0173,0.0081,,,5.12,214,218,0/214,1/218,,treatment emergent,10,FOREST_PLOT,,Fig 2,Fagerström 2010,-0.0046,-0.0173,0.0081,KNOWN,,zero events varenicline arm
+F2-02,A1,STUDY,Rennard 2012,AS_PUBLISHED,RD (proportion),0.0000,-0.0087,0.0087,,,5.89,493,166,0/493,0/166,,treatment emergent,10,FOREST_PLOT,,Fig 2,Rennard 2012,0.0000,-0.0087,0.0087,KNOWN,,double-zero; retained in RD
+F2-03,A1,STUDY,A3051072 2012,AS_PUBLISHED,RD (proportion),0.0000,-0.0352,0.0352,,,1.35,85,43,0/85,0/43,,treatment emergent,10,FOREST_PLOT,,Fig 2,A3051072 2012,0.0000,-0.0352,0.0352,KNOWN,,double-zero; unpublished trial
+F2-04,A1,STUDY,Hong 2011,AS_PUBLISHED,RD (proportion),0.0000,-0.0902,0.0902,,,0.49,20,21,0/20,0/21,,treatment emergent,10,FOREST_PLOT,,Fig 2,Hong 2011,0.0000,-0.0902,0.0902,KNOWN,,double-zero
+F2-05,A1,STUDY,Ebbert 2011,AS_PUBLISHED,RD (proportion),0.0000,-0.0499,0.0499,,,0.90,38,38,0/38,0/38,,treatment emergent,10,FOREST_PLOT,,Fig 2,Ebbert 2011,0.0000,-0.0499,0.0499,KNOWN,,double-zero
+F2-06,A1,STUDY,Garza 2011,AS_PUBLISHED,RD (proportion),0.0000,-0.0348,0.0348,,,1.30,55,55,0/55,0/55,,treatment emergent,10,FOREST_PLOT,,Fig 2,Garza 2011,0.0000,-0.0348,0.0348,KNOWN,,double-zero
+F2-07,A1,STUDY,Hughes 2011,AS_PUBLISHED,RD (proportion),0.0000,-0.0178,0.0178,,,2.58,107,111,0/107,0/111,,treatment emergent,10,FOREST_PLOT,,Fig 2,Hughes 2011,0.0000,-0.0178,0.0178,KNOWN,,double-zero
+F2-08,A1,STUDY,Wang 2009,AS_PUBLISHED,RD (proportion),0.0000,-0.0117,0.0117,,,3.95,165,168,0/165,0/168,,treatment emergent,10,FOREST_PLOT,,Fig 2,Wang 2009,0.0000,-0.0117,0.0117,KNOWN,,double-zero
+F2-09,A1,STUDY,Poling 2010,AS_PUBLISHED,RD (proportion),0.0000,-0.1210,0.1210,,,0.36,13,18,0/13,0/18,,treatment emergent,10,FOREST_PLOT,,Fig 2,Poling 2010,0.0000,-0.1210,0.1210,KNOWN,,double-zero; CI arrows truncated
+F2-10,A1,STUDY,Steinberg 2011,AS_PUBLISHED,RD (proportion),-0.0006,-0.0699,0.0687,,,0.94,40,39,1/40,1/39,,treatment emergent,10,FOREST_PLOT,,Fig 2,Steinberg 2011,-0.0006,-0.0699,0.0687,KNOWN,,see PRO-CON-1 vs Table 2
+F2-11,A1,STUDY,Jorenby 2006,AS_PUBLISHED,RD (proportion),0.0000,-0.0081,0.0081,,,8.13,344,341,1/344,1/341,,treatment emergent,10,FOREST_PLOT,,Fig 2,Jorenby 2006,0.0000,-0.0081,0.0081,KNOWN,,weight 8.13 vs 8.12 in Fig 3 (PRO-CON-3)
+F2-12,A1,STUDY,Gonzales 2006,AS_PUBLISHED,RD (proportion),-0.0001,-0.0114,0.0111,,,8.25,352,344,2/352,2/344,,treatment emergent,10,FOREST_PLOT,,Fig 2,Gonzales 2006,-0.0001,-0.0114,0.0111,KNOWN,,
+F2-13,A1,STUDY,Rigotti 2010,AS_PUBLISHED,RD (proportion),0.0003,-0.0239,0.0245,,,8.47,355,359,10/355,10/359,,treatment emergent,10,FOREST_PLOT,,Fig 2,Rigotti 2010,0.0003,-0.0239,0.0245,KNOWN,,
+F2-14,A1,STUDY,Oncken 2006,AS_PUBLISHED,RD (proportion),0.0039,-0.0083,0.0161,,,4.90,518,129,2/518,0/129,,treatment emergent,10,FOREST_PLOT,,Fig 2,Oncken 2006,0.0039,-0.0083,0.0161,KNOWN,,
+F2-15,A1,STUDY,Nides 2006,AS_PUBLISHED,RD (proportion),0.0026,-0.0099,0.0151,,,4.53,383,127,1/383,0/127,,treatment emergent,10,FOREST_PLOT,,Fig 2,Nides 2006,0.0026,-0.0099,0.0151,KNOWN,,upper CI 0.0151 vs 0.0152 in Fig 3 (PRO-CON-2)
+F2-16,A1,STUDY,Nakamura 2007,AS_PUBLISHED,RD (proportion),0.0022,-0.0082,0.0125,,,5.49,465,154,1/465,0/154,,treatment emergent,10,FOREST_PLOT,,Fig 2,Nakamura 2007,0.0022,-0.0082,0.0125,KNOWN,,
+F2-17,A1,STUDY,Bolliger 2011,AS_PUBLISHED,RD (proportion),0.0025,-0.0067,0.0117,,,6.27,394,199,1/394,0/199,,treatment emergent,10,FOREST_PLOT,,Fig 2,Bolliger 2011,0.0025,-0.0067,0.0117,KNOWN,,
+F2-18,A1,STUDY,Tsai 2007,AS_PUBLISHED,RD (proportion),0.0079,-0.0139,0.0297,,,2.97,126,124,1/126,0/124,,treatment emergent,10,FOREST_PLOT,,Fig 2,Tsai 2007,0.0079,-0.0139,0.0297,KNOWN,,
+F2-19,A1,STUDY,Niaura 2008,AS_PUBLISHED,RD (proportion),0.0125,-0.0084,0.0334,,,3.80,160,160,2/160,0/160,,treatment emergent,10,FOREST_PLOT,,Fig 2,Niaura 2008,0.0125,-0.0084,0.0334,KNOWN,,
+F2-20,A1,STUDY,Tonstad 2006,AS_PUBLISHED,RD (proportion),0.0033,-0.0023,0.0089,,,14.35,603,607,2/603,0/607,,treatment emergent,10,FOREST_PLOT,,Fig 2,Tonstad 2006,0.0033,-0.0023,0.0089,KNOWN,,largest weight
+F2-21,A1,STUDY,Williams 2007,AS_PUBLISHED,RD (proportion),0.0160,-0.0085,0.0404,,,3.98,251,126,6/251,1/126,,treatment emergent,10,FOREST_PLOT,,Fig 2,Williams 2007,0.0160,-0.0085,0.0404,KNOWN,,
+F2-22,A1,STUDY,Tashkin 2011,AS_PUBLISHED,RD (proportion),0.0081,-0.0108,0.0271,,,5.98,250,254,4/250,2/254,,treatment emergent,10,FOREST_PLOT,,Fig 2,Tashkin 2011,0.0081,-0.0108,0.0271,KNOWN,,
+F2-23,A1,OVERALL_TOTAL,Overall,AS_PUBLISHED,RD (proportion),0.0027,-0.0010,0.0063,,,100.00,,,,,,treatment emergent,10,FOREST_PLOT,,Fig 2,Overall,0.0027,-0.0010,0.0063,KNOWN,,"row label 'Overall: I2=0%, P=1.00' (heterogeneity P; effect P=0.15 in text)"
+T2RD-01,A1,STUDY,Fagerstrom et al,AS_PUBLISHED,RD (%),−0.46,−1.73,0.81,,,,214,218,0/214,1/218,,treatment emergent,9,TABLE,Table 2,,Fagerstrom et al,−0.46,−1.73,0.81,KNOWN,,
+T2RD-02,A1,STUDY,Rennard et al,AS_PUBLISHED,RD (%),0,−0.87,0.87,,,,493,166,0/493,0/166,,treatment emergent,9,TABLE,Table 2,,Rennard et al,0,−0.87,0.87,KNOWN,,3:1 allocation
+T2RD-03,A1,STUDY,Protocol A3051072,AS_PUBLISHED,RD (%),0,−3.52,3.52,,,,85,43,0/85,0/43,,treatment emergent,9,TABLE,Table 2,,Protocol A3051072,0,−3.52,3.52,KNOWN,,2:1
+T2RD-04,A1,STUDY,Hong et al,AS_PUBLISHED,RD (%),0,−9.00,9.00,,,,20,21,0/20,0/21,,treatment emergent,9,TABLE,Table 2,,Hong et al,0,−9.00,9.00,KNOWN,,
+T2RD-05,A1,STUDY,Ebbert et al,AS_PUBLISHED,RD (%),0,−4.99,4.99,,,,38,38,0/38,0/38,,treatment emergent,9,TABLE,Table 2,,Ebbert et al,0,−4.99,4.99,KNOWN,,
+T2RD-06,A1,STUDY,Garza et al,AS_PUBLISHED,RD (%),0,−3.48,3.48,,,,55,55,0/55,0/55,,treatment emergent,9,TABLE,Table 2,,Garza et al,0,−3.48,3.48,KNOWN,,
+T2RD-07,A1,STUDY,Hughes et al,AS_PUBLISHED,RD (%),0,−1.78,1.78,,,,107,111,0/107,0/111,,treatment emergent,9,TABLE,Table 2,,Hughes et al,0,−1.78,1.78,KNOWN,,
+T2RD-08,A1,STUDY,Wang et al,AS_PUBLISHED,RD (%),0,−1.17,1.17,,,,165,168,0/165,0/168,,treatment emergent,9,TABLE,Table 2,,Wang et al,0,−1.17,1.17,KNOWN,,
+T2RD-09,A1,STUDY,Poling et al,AS_PUBLISHED,RD (%),0,−12.10,12.10,,,,13,18,0/13,0/18,,treatment emergent,9,TABLE,Table 2,,Poling et al,0,−12.10,12.10,KNOWN,,0.7:1
+T2RD-10,A1,STUDY,Steinberg et al,AS_PUBLISHED,RD (%),−0.06,−0.07,6.87,,,,40,39,1/40,1/39,,treatment emergent,9,TABLE,Table 2,,Steinberg et al,−0.06,−0.07,6.87,AMBIGUOUS,,verbatim '−0.06 (−0.07 to 6.87)'; contradicts Fig 2 (−6.99 likely intended) — PRO-CON-1
+T2RD-11,A1,STUDY,Jorenby et al,AS_PUBLISHED,RD (%),0.00,−0.81,0.81,,,,344,341,1/344,1/341,,treatment emergent,9,TABLE,Table 2,,Jorenby et al,0.00,−0.81,0.81,KNOWN,,
+T2RD-12,A1,STUDY,Gonzales et al,AS_PUBLISHED,RD (%),−0.01,−1.14,1.11,,,,352,344,2/352,2/344,,treatment emergent,9,TABLE,Table 2,,Gonzales et al,−0.01,−1.14,1.11,KNOWN,,
+T2RD-13,A1,STUDY,Rigotti et al,AS_PUBLISHED,RD (%),0.03,−2.39,2.45,,,,355,359,10/355,10/359,,treatment emergent,9,TABLE,Table 2,,Rigotti et al,0.03,−2.39,2.45,KNOWN,,
+T2RD-14,A1,STUDY,Oncken et al,AS_PUBLISHED,RD (%),0.39,−0.83,1.61,,,,518,129,2/518,0/129,,treatment emergent,9,TABLE,Table 2,,Oncken et al,0.39,−0.83,1.61,KNOWN,,4:1
+T2RD-15,A1,STUDY,Nides et al,AS_PUBLISHED,RD (%),0.26,−0.99,1.51,,,,383,127,1/383,0/127,,treatment emergent,9,TABLE,Table 2,,Nides et al,0.26,−0.99,1.51,KNOWN,,3:1
+T2RD-16,A1,STUDY,Nakamura et al,AS_PUBLISHED,RD (%),0.22,−0.82,1.25,,,,465,154,1/465,0/154,,treatment emergent,9,TABLE,Table 2,,Nakamura et al,0.22,−0.82,1.25,KNOWN,,3:1
+T2RD-17,A1,STUDY,Bolliger et al,AS_PUBLISHED,RD (%),0.25,−0.67,1.17,,,,394,199,1/394,0/199,,treatment emergent,9,TABLE,Table 2,,Bolliger et al,0.25,−0.67,1.17,KNOWN,,2:1
+T2RD-18,A1,STUDY,Tsai et al,AS_PUBLISHED,RD (%),0.79,−1.39,2.97,,,,126,124,1/126,0/124,,treatment emergent,9,TABLE,Table 2,,Tsai et al,0.79,−1.39,2.97,KNOWN,,
+T2RD-19,A1,STUDY,Niaura et al,AS_PUBLISHED,RD (%),1.25,−0.84,3.34,,,,160,160,2/160,0/160,,treatment emergent,9,TABLE,Table 2,,Niaura et al,1.25,−0.84,3.34,KNOWN,,
+T2RD-20,A1,STUDY,Tonstad et al,AS_PUBLISHED,RD (%),0.33,−0.23,0.89,,,,603,607,2/603,0/607,,treatment emergent,9,TABLE,Table 2,,Tonstad et al,0.33,−0.23,0.89,KNOWN,,
+T2RD-21,A1,STUDY,Williams et al,AS_PUBLISHED,RD (%),1.60,−0.85,4.04,,,,251,126,6/251,1/126,,treatment emergent,9,TABLE,Table 2,,Williams et al,1.60,−0.85,4.04,KNOWN,,2:1
+T2RD-22,A1,STUDY,Tashkin et al,AS_PUBLISHED,RD (%),0.81,−1.08,2.71,,,,250,254,4/250,2/254,,treatment emergent,9,TABLE,Table 2,,Tashkin et al,0.81,−1.08,2.71,KNOWN,,
+T2RD-23,A1,OVERALL_TOTAL,All trials combined,AS_PUBLISHED,RD (%),0.27,−0.10,0.63,,,,,,,,,treatment emergent,9,TABLE,Table 2,,All trials combined,0.27,−0.10,0.63,KNOWN,,
+T2RR-01,A2,STUDY,Fagerstrom et al,AS_PUBLISHED,RR,0.34,0.01,8.29,,,,214,218,0/214,1/218,,treatment emergent,9,TABLE,Table 2,,Fagerstrom et al,0.34,0.01,8.29,KNOWN,,
+T2RR-02,A2,STUDY,Rennard et al,AS_PUBLISHED,RR,UC,,,,,,493,166,0/493,0/166,,treatment emergent,9,TABLE,Table 2,,Rennard et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2RR-03,A2,STUDY,Protocol A3051072,AS_PUBLISHED,RR,UC,,,,,,85,43,0/85,0/43,,treatment emergent,9,TABLE,Table 2,,Protocol A3051072,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2RR-04,A2,STUDY,Hong et al,AS_PUBLISHED,RR,UC,,,,,,20,21,0/20,0/21,,treatment emergent,9,TABLE,Table 2,,Hong et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2RR-05,A2,STUDY,Ebbert et al,AS_PUBLISHED,RR,UC,,,,,,38,38,0/38,0/38,,treatment emergent,9,TABLE,Table 2,,Ebbert et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2RR-06,A2,STUDY,Garza et al,AS_PUBLISHED,RR,UC,,,,,,55,55,0/55,0/55,,treatment emergent,9,TABLE,Table 2,,Garza et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2RR-07,A2,STUDY,Hughes et al,AS_PUBLISHED,RR,UC,,,,,,107,111,0/107,0/111,,treatment emergent,9,TABLE,Table 2,,Hughes et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2RR-08,A2,STUDY,Wang et al,AS_PUBLISHED,RR,UC,,,,,,165,168,0/165,0/168,,treatment emergent,9,TABLE,Table 2,,Wang et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2RR-09,A2,STUDY,Poling et al,AS_PUBLISHED,RR,UC,,,,,,13,18,0/13,0/18,,treatment emergent,9,TABLE,Table 2,,Poling et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2RR-10,A2,STUDY,Steinberg et al,AS_PUBLISHED,RR,0.98,0.06,15.05,,,,40,39,1/40,1/39,,treatment emergent,9,TABLE,Table 2,,Steinberg et al,0.98,0.06,15.05,KNOWN,,
+T2RR-11,A2,STUDY,Jorenby et al,AS_PUBLISHED,RR,0.99,0.06,15.78,,,,344,341,1/344,1/341,,treatment emergent,9,TABLE,Table 2,,Jorenby et al,0.99,0.06,15.78,KNOWN,,
+T2RR-12,A2,STUDY,Gonzales et al,AS_PUBLISHED,RR,0.98,0.14,6.90,,,,352,344,2/352,2/344,,treatment emergent,9,TABLE,Table 2,,Gonzales et al,0.98,0.14,6.90,KNOWN,,
+T2RR-13,A2,STUDY,Rigotti et al,AS_PUBLISHED,RR,1.01,0.43,2.40,,,,355,359,10/355,10/359,,treatment emergent,9,TABLE,Table 2,,Rigotti et al,1.01,0.43,2.40,KNOWN,,
+T2RR-14,A2,STUDY,Oncken et al,AS_PUBLISHED,RR,1.25,0.06,25.93,,,,518,129,2/518,0/129,,treatment emergent,9,TABLE,Table 2,,Oncken et al,1.25,0.06,25.93,KNOWN,,
+T2RR-15,A2,STUDY,Nides et al,AS_PUBLISHED,RR,1.00,0.04,24.39,,,,383,127,1/383,0/127,,treatment emergent,9,TABLE,Table 2,,Nides et al,1.00,0.04,24.39,KNOWN,,
+T2RR-16,A2,STUDY,Nakamura et al,AS_PUBLISHED,RR,1.00,0.04,24.37,,,,465,154,1/465,0/154,,treatment emergent,9,TABLE,Table 2,,Nakamura et al,1.00,0.04,24.37,KNOWN,,
+T2RR-17,A2,STUDY,Bolliger et al,AS_PUBLISHED,RR,1.52,0.06,37.12,,,,394,199,1/394,0/199,,treatment emergent,9,TABLE,Table 2,,Bolliger et al,1.52,0.06,37.12,KNOWN,,
+T2RR-18,A2,STUDY,Tsai et al,AS_PUBLISHED,RR,2.95,0.12,71.79,,,,126,124,1/126,0/124,,treatment emergent,9,TABLE,Table 2,,Tsai et al,2.95,0.12,71.79,KNOWN,,
+T2RR-19,A2,STUDY,Niaura et al,AS_PUBLISHED,RR,5.00,0.24,103.33,,,,160,160,2/160,0/160,,treatment emergent,9,TABLE,Table 2,,Niaura et al,5.00,0.24,103.33,KNOWN,,
+T2RR-20,A2,STUDY,Tonstad et al,AS_PUBLISHED,RR,5.03,0.24,104.62,,,,603,607,2/603,0/607,,treatment emergent,9,TABLE,Table 2,,Tonstad et al,5.03,0.24,104.62,KNOWN,,
+T2RR-21,A2,STUDY,Williams et al,AS_PUBLISHED,RR,3.01,0.37,24.75,,,,251,126,6/251,1/126,,treatment emergent,9,TABLE,Table 2,,Williams et al,3.01,0.37,24.75,KNOWN,,
+T2RR-22,A2,STUDY,Tashkin et al,AS_PUBLISHED,RR,2.03,0.38,10.99,,,,250,254,4/250,2/254,,treatment emergent,9,TABLE,Table 2,,Tashkin et al,2.03,0.38,10.99,KNOWN,,
+T2RR-23,A2,OVERALL_TOTAL,All trials combined,AS_PUBLISHED,RR,1.40,0.82,2.39,,,,,,,,,treatment emergent,9,TABLE,Table 2,,All trials combined,1.40,0.82,2.39,KNOWN,,pooled over 14 trials with ≥1 event
+T2OR-01,A3,STUDY,Fagerstrom et al,AS_PUBLISHED,M-H OR,0.34,0.14,8.34,,,,214,218,0/214,1/218,,treatment emergent,9,TABLE,Table 2,,Fagerstrom et al,0.34,0.14,8.34,AMBIGUOUS,,lower 0.14 inconsistent with RR 0.01/Peto 0.00 — possible misprint (PRO-CON-4)
+T2OR-02,A3,STUDY,Rennard et al,AS_PUBLISHED,M-H OR,UC,,,,,,493,166,0/493,0/166,,treatment emergent,9,TABLE,Table 2,,Rennard et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2OR-03,A3,STUDY,Protocol A3051072,AS_PUBLISHED,M-H OR,UC,,,,,,85,43,0/85,0/43,,treatment emergent,9,TABLE,Table 2,,Protocol A3051072,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2OR-04,A3,STUDY,Hong et al,AS_PUBLISHED,M-H OR,UC,,,,,,20,21,0/20,0/21,,treatment emergent,9,TABLE,Table 2,,Hong et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2OR-05,A3,STUDY,Ebbert et al,AS_PUBLISHED,M-H OR,UC,,,,,,38,38,0/38,0/38,,treatment emergent,9,TABLE,Table 2,,Ebbert et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2OR-06,A3,STUDY,Garza et al,AS_PUBLISHED,M-H OR,UC,,,,,,55,55,0/55,0/55,,treatment emergent,9,TABLE,Table 2,,Garza et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2OR-07,A3,STUDY,Hughes et al,AS_PUBLISHED,M-H OR,UC,,,,,,107,111,0/107,0/111,,treatment emergent,9,TABLE,Table 2,,Hughes et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2OR-08,A3,STUDY,Wang et al,AS_PUBLISHED,M-H OR,UC,,,,,,165,168,0/165,0/168,,treatment emergent,9,TABLE,Table 2,,Wang et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2OR-09,A3,STUDY,Poling et al,AS_PUBLISHED,M-H OR,UC,,,,,,13,18,0/13,0/18,,treatment emergent,9,TABLE,Table 2,,Poling et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2OR-10,A3,STUDY,Steinberg et al,AS_PUBLISHED,M-H OR,0.97,0.06,16.15,,,,40,39,1/40,1/39,,treatment emergent,9,TABLE,Table 2,,Steinberg et al,0.97,0.06,16.15,KNOWN,,
+T2OR-11,A3,STUDY,Jorenby et al,AS_PUBLISHED,M-H OR,0.99,0.06,15.91,,,,344,341,1/344,1/341,,treatment emergent,9,TABLE,Table 2,,Jorenby et al,0.99,0.06,15.91,KNOWN,,
+T2OR-12,A3,STUDY,Gonzales et al,AS_PUBLISHED,M-H OR,0.98,0.14,6.98,,,,352,344,2/352,2/344,,treatment emergent,9,TABLE,Table 2,,Gonzales et al,0.98,0.14,6.98,KNOWN,,
+T2OR-13,A3,STUDY,Rigotti et al,AS_PUBLISHED,M-H OR,1.01,0.42,2.46,,,,355,359,10/355,10/359,,treatment emergent,9,TABLE,Table 2,,Rigotti et al,1.01,0.42,2.46,KNOWN,,
+T2OR-14,A3,STUDY,Oncken et al,AS_PUBLISHED,M-H OR,1.25,0.06,26.27,,,,518,129,2/518,0/129,,treatment emergent,9,TABLE,Table 2,,Oncken et al,1.25,0.06,26.27,KNOWN,,
+T2OR-15,A3,STUDY,Nides et al,AS_PUBLISHED,M-H OR,1.00,0.04,24.70,,,,383,127,1/383,0/127,,treatment emergent,9,TABLE,Table 2,,Nides et al,1.00,0.04,24.70,KNOWN,,
+T2OR-16,A3,STUDY,Nakamura et al,AS_PUBLISHED,M-H OR,1.00,0.04,24.62,,,,465,154,1/465,0/154,,treatment emergent,9,TABLE,Table 2,,Nakamura et al,1.00,0.04,24.62,KNOWN,,
+T2OR-17,A3,STUDY,Bolliger et al,AS_PUBLISHED,M-H OR,1.52,0.06,37.51,,,,394,199,1/394,0/199,,treatment emergent,9,TABLE,Table 2,,Bolliger et al,1.52,0.06,37.51,KNOWN,,
+T2OR-18,A3,STUDY,Tsai et al,AS_PUBLISHED,M-H OR,2.98,0.12,73.76,,,,126,124,1/126,0/124,,treatment emergent,9,TABLE,Table 2,,Tsai et al,2.98,0.12,73.76,KNOWN,,
+T2OR-19,A3,STUDY,Niaura et al,AS_PUBLISHED,M-H OR,5.06,0.24,106.30,,,,160,160,2/160,0/160,,treatment emergent,9,TABLE,Table 2,,Niaura et al,5.06,0.24,106.30,KNOWN,,
+T2OR-20,A3,STUDY,Tonstad et al,AS_PUBLISHED,M-H OR,5.05,0.24,105.41,,,,603,607,2/603,0/607,,treatment emergent,9,TABLE,Table 2,,Tonstad et al,5.05,0.24,105.41,KNOWN,,
+T2OR-21,A3,STUDY,Williams et al,AS_PUBLISHED,M-H OR,3.06,0.37,25.71,,,,251,126,6/251,1/126,,treatment emergent,9,TABLE,Table 2,,Williams et al,3.06,0.37,25.71,KNOWN,,
+T2OR-22,A3,STUDY,Tashkin et al,AS_PUBLISHED,M-H OR,2.05,0.37,11.29,,,,250,254,4/250,2/254,,treatment emergent,9,TABLE,Table 2,,Tashkin et al,2.05,0.37,11.29,KNOWN,,
+T2OR-23,A3,OVERALL_TOTAL,All trials combined,AS_PUBLISHED,M-H OR,1.41,0.82,2.42,,,,,,,,,treatment emergent,9,TABLE,Table 2,,All trials combined,1.41,0.82,2.42,KNOWN,,pooled over 14 trials with ≥1 event
+T2PO-01,A4,STUDY,Fagerstrom et al,AS_PUBLISHED,Peto OR,0.14,0.00,6.95,,,,214,218,0/214,1/218,,treatment emergent,9,TABLE,Table 2,,Fagerstrom et al,0.14,0.00,6.95,KNOWN,,
+T2PO-02,A4,STUDY,Rennard et al,AS_PUBLISHED,Peto OR,UC,,,,,,493,166,0/493,0/166,,treatment emergent,9,TABLE,Table 2,,Rennard et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2PO-03,A4,STUDY,Protocol A3051072,AS_PUBLISHED,Peto OR,UC,,,,,,85,43,0/85,0/43,,treatment emergent,9,TABLE,Table 2,,Protocol A3051072,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2PO-04,A4,STUDY,Hong et al,AS_PUBLISHED,Peto OR,UC,,,,,,20,21,0/20,0/21,,treatment emergent,9,TABLE,Table 2,,Hong et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2PO-05,A4,STUDY,Ebbert et al,AS_PUBLISHED,Peto OR,UC,,,,,,38,38,0/38,0/38,,treatment emergent,9,TABLE,Table 2,,Ebbert et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2PO-06,A4,STUDY,Garza et al,AS_PUBLISHED,Peto OR,UC,,,,,,55,55,0/55,0/55,,treatment emergent,9,TABLE,Table 2,,Garza et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2PO-07,A4,STUDY,Hughes et al,AS_PUBLISHED,Peto OR,UC,,,,,,107,111,0/107,0/111,,treatment emergent,9,TABLE,Table 2,,Hughes et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2PO-08,A4,STUDY,Wang et al,AS_PUBLISHED,Peto OR,UC,,,,,,165,168,0/165,0/168,,treatment emergent,9,TABLE,Table 2,,Wang et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2PO-09,A4,STUDY,Poling et al,AS_PUBLISHED,Peto OR,UC,,,,,,13,18,0/13,0/18,,treatment emergent,9,TABLE,Table 2,,Poling et al,UC,,,KNOWN,,UC = unable to calculate (zero events both arms); excluded from relative-measure pooling
+T2PO-10,A4,STUDY,Steinberg et al,AS_PUBLISHED,Peto OR,0.98,0.06,15.87,,,,40,39,1/40,1/39,,treatment emergent,9,TABLE,Table 2,,Steinberg et al,0.98,0.06,15.87,KNOWN,,
+T2PO-11,A4,STUDY,Jorenby et al,AS_PUBLISHED,Peto OR,0.99,0.06,15.88,,,,344,341,1/344,1/341,,treatment emergent,9,TABLE,Table 2,,Jorenby et al,0.99,0.06,15.88,KNOWN,,
+T2PO-12,A4,STUDY,Gonzales et al,AS_PUBLISHED,Peto OR,0.98,0.14,6.97,,,,352,344,2/352,2/344,,treatment emergent,9,TABLE,Table 2,,Gonzales et al,0.98,0.14,6.97,KNOWN,,
+T2PO-13,A4,STUDY,Rigotti et al,AS_PUBLISHED,Peto OR,1.01,0.42,2.46,,,,355,359,10/355,10/359,,treatment emergent,9,TABLE,Table 2,,Rigotti et al,1.01,0.42,2.46,KNOWN,,
+T2PO-14,A4,STUDY,Oncken et al,AS_PUBLISHED,Peto OR,3.49,0.11,112.44,,,,518,129,2/518,0/129,,treatment emergent,9,TABLE,Table 2,,Oncken et al,3.49,0.11,112.44,KNOWN,,
+T2PO-15,A4,STUDY,Nides et al,AS_PUBLISHED,Peto OR,3.79,0.04,352.09,,,,383,127,1/383,0/127,,treatment emergent,9,TABLE,Table 2,,Nides et al,3.79,0.04,352.09,KNOWN,,
+T2PO-16,A4,STUDY,Nakamura et al,AS_PUBLISHED,Peto OR,3.79,0.04,352.44,,,,465,154,1/465,0/154,,treatment emergent,9,TABLE,Table 2,,Nakamura et al,3.79,0.04,352.44,KNOWN,,
+T2PO-17,A4,STUDY,Bolliger et al,AS_PUBLISHED,Peto OR,4.50,0.07,285.96,,,,394,199,1/394,0/199,,treatment emergent,9,TABLE,Table 2,,Bolliger et al,4.50,0.07,285.96,KNOWN,,
+T2PO-18,A4,STUDY,Tsai et al,AS_PUBLISHED,Peto OR,7.27,0.14,366.57,,,,126,124,1/126,0/124,,treatment emergent,9,TABLE,Table 2,,Tsai et al,7.27,0.14,366.57,KNOWN,,
+T2PO-19,A4,STUDY,Niaura et al,AS_PUBLISHED,Peto OR,7.44,0.46,119.40,,,,160,160,2/160,0/160,,treatment emergent,9,TABLE,Table 2,,Niaura et al,7.44,0.46,119.40,KNOWN,,
+T2PO-20,A4,STUDY,Tonstad et al,AS_PUBLISHED,Peto OR,7.45,0.47,119.26,,,,603,607,2/603,0/607,,treatment emergent,9,TABLE,Table 2,,Tonstad et al,7.45,0.47,119.26,KNOWN,,
+T2PO-21,A4,STUDY,Williams et al,AS_PUBLISHED,Peto OR,2.40,0.49,11.67,,,,251,126,6/251,1/126,,treatment emergent,9,TABLE,Table 2,,Williams et al,2.40,0.49,11.67,KNOWN,,
+T2PO-22,A4,STUDY,Tashkin et al,AS_PUBLISHED,Peto OR,1.99,0.40,9.95,,,,250,254,4/250,2/254,,treatment emergent,9,TABLE,Table 2,,Tashkin et al,1.99,0.40,9.95,KNOWN,,
+T2PO-23,A4,OVERALL_TOTAL,All trials combined,AS_PUBLISHED,Peto OR,1.58,0.90,2.76,,,,,,,,,treatment emergent,9,TABLE,Table 2,,All trials combined,1.58,0.90,2.76,KNOWN,,pooled over 14 trials with ≥1 event
+F3-01,A10,STUDY,Nides 2006,AS_PUBLISHED,cumulative RD,0.0026,-0.0099,0.0152,,,4.53,383,127,1/383,0/127,,treatment emergent,11,FOREST_PLOT,,Fig 3,Nides 2006,0.0026,-0.0099,0.0152,KNOWN,,cumulative estimate through this trial; first row = single-trial estimate; upper 0.0152 vs 0.0151 Fig 2
+F3-02,A10,STUDY,Oncken 2006,AS_PUBLISHED,cumulative RD,0.0033,-0.0055,0.0120,,,4.90,518,129,2/518,0/129,,treatment emergent,11,FOREST_PLOT,,Fig 3,Oncken 2006,0.0033,-0.0055,0.0120,KNOWN,,cumulative estimate through this trial
+F3-03,A10,STUDY,Jorenby 2006,AS_PUBLISHED,cumulative RD,0.0017,-0.0043,0.0078,,,8.12,344,341,1/344,1/341,,treatment emergent,11,FOREST_PLOT,,Fig 3,Jorenby 2006,0.0017,-0.0043,0.0078,KNOWN,,cumulative estimate through this trial; weight 8.12 vs 8.13 Fig 2
+F3-04,A10,STUDY,Tonstad 2006,AS_PUBLISHED,cumulative RD,0.0024,-0.0017,0.0066,,,14.35,603,607,2/603,0/607,,treatment emergent,11,FOREST_PLOT,,Fig 3,Tonstad 2006,0.0024,-0.0017,0.0066,KNOWN,,cumulative estimate through this trial
+F3-05,A10,STUDY,Gonzales 2006,AS_PUBLISHED,cumulative RD,0.0019,-0.0021,0.0060,,,8.25,352,344,2/352,2/344,,treatment emergent,11,FOREST_PLOT,,Fig 3,Gonzales 2006,0.0019,-0.0021,0.0060,KNOWN,,cumulative estimate through this trial
+F3-06,A10,STUDY,Nakamura 2007,AS_PUBLISHED,cumulative RD,0.0019,-0.0018,0.0057,,,5.49,465,154,1/465,0/154,,treatment emergent,11,FOREST_PLOT,,Fig 3,Nakamura 2007,0.0019,-0.0018,0.0057,KNOWN,,cumulative estimate through this trial
+F3-07,A10,STUDY,Williams 2007,AS_PUBLISHED,cumulative RD,0.0031,-0.0009,0.0070,,,3.98,251,126,6/251,1/126,,treatment emergent,11,FOREST_PLOT,,Fig 3,Williams 2007,0.0031,-0.0009,0.0070,KNOWN,,cumulative estimate through this trial
+F3-08,A10,STUDY,Tsai 2007,AS_PUBLISHED,cumulative RD,0.0033,-0.0006,0.0073,,,2.97,126,124,1/126,0/124,,treatment emergent,11,FOREST_PLOT,,Fig 3,Tsai 2007,0.0033,-0.0006,0.0073,KNOWN,,cumulative estimate through this trial
+F3-09,A10,STUDY,Niaura 2008,AS_PUBLISHED,cumulative RD,0.0040,0.0000,0.0079,,,3.80,160,160,2/160,0/160,,treatment emergent,11,FOREST_PLOT,,Fig 3,Niaura 2008,0.0040,0.0000,0.0079,KNOWN,,cumulative estimate through this trial
+F3-10,A10,STUDY,Wang 2009,AS_PUBLISHED,cumulative RD,0.0037,-0.0001,0.0075,,,3.95,165,168,0/165,0/168,,treatment emergent,11,FOREST_PLOT,,Fig 3,Wang 2009,0.0037,-0.0001,0.0075,KNOWN,,cumulative estimate through this trial
+F3-11,A10,STUDY,Fagerström 2010,AS_PUBLISHED,cumulative RD,0.0031,-0.0006,0.0067,,,5.12,214,218,0/214,1/218,,treatment emergent,11,FOREST_PLOT,,Fig 3,Fagerström 2010,0.0031,-0.0006,0.0067,KNOWN,,cumulative estimate through this trial
+F3-12,A10,STUDY,Poling 2010,AS_PUBLISHED,cumulative RD,0.0030,-0.0006,0.0067,,,0.36,13,18,0/13,0/18,,treatment emergent,11,FOREST_PLOT,,Fig 3,Poling 2010,0.0030,-0.0006,0.0067,KNOWN,,cumulative estimate through this trial
+F3-13,A10,STUDY,Rigotti 2010,AS_PUBLISHED,cumulative RD,0.0027,-0.0015,0.0070,,,8.47,355,359,10/355,10/359,,treatment emergent,11,FOREST_PLOT,,Fig 3,Rigotti 2010,0.0027,-0.0015,0.0070,KNOWN,,cumulative estimate through this trial
+F3-14,A10,STUDY,Tashkin 2011,AS_PUBLISHED,cumulative RD,0.0031,-0.0011,0.0073,,,5.98,250,254,4/250,2/254,,treatment emergent,11,FOREST_PLOT,,Fig 3,Tashkin 2011,0.0031,-0.0011,0.0073,KNOWN,,cumulative estimate through this trial
+F3-15,A10,STUDY,Bolliger 2011,AS_PUBLISHED,cumulative RD,0.0031,-0.0009,0.0070,,,6.27,394,199,1/394,0/199,,treatment emergent,11,FOREST_PLOT,,Fig 3,Bolliger 2011,0.0031,-0.0009,0.0070,KNOWN,,cumulative estimate through this trial
+F3-16,A10,STUDY,Hughes 2011,AS_PUBLISHED,cumulative RD,0.0030,-0.0009,0.0069,,,2.58,107,111,0/107,0/111,,treatment emergent,11,FOREST_PLOT,,Fig 3,Hughes 2011,0.0030,-0.0009,0.0069,KNOWN,,cumulative estimate through this trial
+F3-17,A10,STUDY,Steinberg 2011,AS_PUBLISHED,cumulative RD,0.0030,-0.0009,0.0068,,,0.94,40,39,1/40,1/39,,treatment emergent,11,FOREST_PLOT,,Fig 3,Steinberg 2011,0.0030,-0.0009,0.0068,KNOWN,,cumulative estimate through this trial
+F3-18,A10,STUDY,Ebbert 2011,AS_PUBLISHED,cumulative RD,0.0029,-0.0010,0.0068,,,0.90,38,38,0/38,0/38,,treatment emergent,11,FOREST_PLOT,,Fig 3,Ebbert 2011,0.0029,-0.0010,0.0068,KNOWN,,cumulative estimate through this trial
+F3-19,A10,STUDY,Hong 2011,AS_PUBLISHED,cumulative RD,0.0029,-0.0010,0.0068,,,0.49,20,21,0/20,0/21,,treatment emergent,11,FOREST_PLOT,,Fig 3,Hong 2011,0.0029,-0.0010,0.0068,KNOWN,,cumulative estimate through this trial
+F3-20,A10,STUDY,Garza 2011,AS_PUBLISHED,cumulative RD,0.0029,-0.0010,0.0067,,,1.30,55,55,0/55,0/55,,treatment emergent,11,FOREST_PLOT,,Fig 3,Garza 2011,0.0029,-0.0010,0.0067,KNOWN,,cumulative estimate through this trial
+F3-21,A10,STUDY,Rennard 2012,AS_PUBLISHED,cumulative RD,0.0027,-0.0010,0.0064,,,5.89,493,166,0/493,0/166,,treatment emergent,11,FOREST_PLOT,,Fig 3,Rennard 2012,0.0027,-0.0010,0.0064,KNOWN,,cumulative estimate through this trial
+F3-22,A10,OVERALL_TOTAL,A3051072 2012,AS_PUBLISHED,cumulative RD,0.0027,-0.0010,0.0063,,,1.35,85,43,0/85,0/43,,treatment emergent,11,FOREST_PLOT,,Fig 3,A3051072 2012,0.0027,-0.0010,0.0063,KNOWN,,cumulative estimate through this trial; final cumulative row = overall

@@ -127,14 +127,30 @@ async def upload_document(request: Request, project_id: str, file: UploadFile):
             filename=file.filename or "document.pdf",
             content=content,
         )
-        queue.enqueue(
-            session,
-            project_id=project_id,
-            stage_id=parse_stage.STAGE_ID,
-            work_item_ref=doc.id,
-            idempotency_key=parse_stage.idempotency_key(doc.sha256),
-            input_hash=doc.sha256,
+        import os
+
+        from app.pipeline.stages import (
+            assemble_tables,
+            detect_figures,
+            extract_figure_vision,
+            identify_analyses,
+            reconcile_representations,
         )
+
+        stages_to_run = [parse_stage, detect_figures, assemble_tables]
+        if os.environ.get("ANTHROPIC_API_KEY"):
+            stages_to_run.append(extract_figure_vision)
+        stages_to_run.append(reconcile_representations)
+        stages_to_run.append(identify_analyses)
+        for mod in stages_to_run:
+            queue.enqueue(
+                session,
+                project_id=project_id,
+                stage_id=mod.STAGE_ID,
+                work_item_ref=doc.id,
+                idempotency_key=mod.idempotency_key(doc.sha256),
+                input_hash=doc.sha256,
+            )
         session.commit()
         return {"document": _doc_payload(session, doc), "created": created}
 
@@ -284,6 +300,162 @@ def restore_datapoint(request: Request, data_point_id: str, body: dict):
         )
         session.commit()
         return {"revision_no": rev.revision_no, "review_state": rev.review_state}
+
+
+# ---- published data / reconciliation / findings (internal audit v1) ---------
+
+
+def _load_records(session, document_id: str) -> list[dict]:
+    artifact = session.scalar(
+        select(ParseArtifact)
+        .where(ParseArtifact.document_id == document_id,
+               ParseArtifact.kind == "TABLE_RECORDS")
+        .order_by(ParseArtifact.created_at.desc())
+    )
+    if artifact is None:
+        raise AppError(
+            code="NOT_ASSEMBLED_YET",
+            what_happened="Published data rows have not been assembled yet.",
+            what_it_means="The document was parsed but table assembly has not run.",
+            next_steps=["Run processing again, then refresh."],
+            http_status=409,
+        )
+    return artifact.payload["records"]
+
+
+def _cell_keys_for(document_id: str, records: list[dict]) -> list[dict]:
+    """Per record: field → stable cell key (occurrence-disambiguated)."""
+    from app.domain.corrections import CORRECTABLE_FIELDS, cell_key
+
+    seen: dict[tuple, int] = {}
+    keys = []
+    for r in records:
+        row_keys = {}
+        for field in CORRECTABLE_FIELDS:
+            value = r.get(field)
+            if value is None or value == "":
+                continue
+            identity = (r.get("page_number"), r.get("study_label"), field, str(value))
+            occurrence = seen.get(identity, 0)
+            seen[identity] = occurrence + 1
+            row_keys[field] = cell_key(document_id, r.get("page_number") or 0,
+                                       r.get("study_label") or "", field,
+                                       str(value), occurrence)
+        keys.append(row_keys)
+    return keys
+
+
+@router.get("/documents/{document_id}/records")
+def get_table_records(request: Request, document_id: str):
+    """Assembled published-data rows with cell provenance, stable cell keys,
+    and any researcher corrections/verifications overlaid."""
+    from app.domain.corrections import overlay_for_document
+
+    with _session(request) as session:
+        records = _load_records(session, document_id)
+        keys = _cell_keys_for(document_id, records)
+        overlay = overlay_for_document(session, document_id)
+        out = []
+        for r, row_keys in zip(records, keys):
+            entry = dict(r)
+            entry["cell_keys"] = row_keys
+            entry["review"] = {
+                field: overlay[k] for field, k in row_keys.items() if k in overlay
+            }
+            out.append(entry)
+        return {"records": out}
+
+
+@router.post("/documents/{document_id}/cells/{action}")
+def act_on_cell(request: Request, document_id: str, action: str, body: dict):
+    """Researcher verify/correct on an extracted cell. The row is resolved
+    server-side by index in the current records; corrections append revisions
+    (originals preserved; undo via /datapoints/{id}/restore)."""
+    from app.domain import corrections
+
+    if action not in ("correct", "verify"):
+        raise not_found("action")
+    with _session(request) as session:
+        records = _load_records(session, document_id)
+        index = int(body.get("record_index", -1))
+        field = body.get("field", "")
+        if not (0 <= index < len(records)):
+            raise not_found("record")
+        row = records[index]
+        keys = _cell_keys_for(document_id, records)[index]
+        if field not in keys:
+            raise AppError(
+                code="NO_SUCH_CELL",
+                what_happened="That cell has no extracted value to act on.",
+                what_it_means="Only cells with extracted values can be verified or corrected.",
+                next_steps=["Pick a populated cell."],
+            )
+        if action == "correct":
+            value = str(body.get("corrected_value", "")).strip()
+            if not value:
+                raise AppError(
+                    code="VALUE_REQUIRED",
+                    what_happened="No corrected value was provided.",
+                    what_it_means="",
+                    next_steps=["Enter the value exactly as printed in the source."],
+                )
+            result = corrections.correct_cell(
+                session, document_id, key=keys[field], field=field, row=row,
+                corrected_value=value, note=body.get("note"),
+            )
+        else:
+            result = corrections.verify_cell(
+                session, document_id, key=keys[field], field=field, row=row,
+                note=body.get("note"),
+            )
+        session.commit()
+        return result
+
+
+@router.get("/documents/{document_id}/analyses")
+def get_analyses(request: Request, document_id: str):
+    """Identified analyses with pooled values and effect-row memberships."""
+    with _session(request) as session:
+        artifact = session.scalar(
+            select(ParseArtifact)
+            .where(ParseArtifact.document_id == document_id,
+                   ParseArtifact.kind == "ANALYSES")
+            .order_by(ParseArtifact.created_at.desc())
+        )
+        return {"analyses": artifact.payload["analyses"] if artifact else []}
+
+
+@router.get("/documents/{document_id}/reconciliation")
+def get_reconciliation(request: Request, document_id: str):
+    with _session(request) as session:
+        artifact = session.scalar(
+            select(ParseArtifact)
+            .where(ParseArtifact.document_id == document_id,
+                   ParseArtifact.kind == "RECONCILIATION")
+            .order_by(ParseArtifact.created_at.desc())
+        )
+        return {"pairs": artifact.payload["pairs"] if artifact else []}
+
+
+@router.get("/projects/{project_id}/findings")
+def list_findings(request: Request, project_id: str):
+    from app.db.models import AuditFinding
+
+    with _session(request) as session:
+        findings = session.scalars(
+            select(AuditFinding).where(AuditFinding.project_id == project_id)
+            .order_by(AuditFinding.created_at)
+        ).all()
+        return [
+            {
+                "id": f.id, "kind": f.finding_kind, "taxonomy": f.taxonomy_code,
+                "severity": f.severity, "certainty": f.certainty,
+                "review_status": f.review_status, "title": f.title,
+                "description": f.description, "document_id": f.document_id,
+                "evidence": f.evidence,
+            }
+            for f in findings
+        ]
 
 
 # ---- pipeline (dev/test helpers; hidden behind Advanced in the UI) ----------

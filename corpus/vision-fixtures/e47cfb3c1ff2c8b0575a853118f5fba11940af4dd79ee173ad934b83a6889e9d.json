@@ -1,0 +1,6 @@
+{
+  "text": "{\n  \"region_readable\": true,\n  \"columns_seen\": [],\n  \"axis_labels\": [\"standardized effect\", \"precision\", \"-5\", \"0\", \"5\", \"10\", \"15\", \"0\", \"5\", \"10\"],\n  \"reading_notes\": \"This region is not a forest plot; it is an Egger's publication bias plot (scatter plot of standardized effect vs precision with a fitted regression line, titled 'Egger's publication bias plot'). Individual scatter points represent studies but carry no printed labels or numeric values, so no rows can be transcribed verbatim. Approximately 22 unlabeled data points are visible along with a positively sloped regression line intercepting near 0.4 on the standardized effect axis and a horizontal reference line at 0.\",\n  \"rows\": []\n}",
+  "model_id": "claude-fable-5",
+  "input_tokens": 1853,
+  "output_tokens": 353
+}

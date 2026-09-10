@@ -1,0 +1,6 @@
+{
+  "text": "{\n  \"region_readable\": true,\n  \"columns_seen\": [],\n  \"axis_labels\": [\"precision\", \"standardized effect\", \"0\", \"5\", \"10\", \"15\", \"10\", \"5\", \"-5\", \"-5\"],\n  \"reading_notes\": \"This is an Egger's publication bias scatter plot, not a forest plot. It shows individual study data points (precision vs standardized effect) with a regression line. No study labels, effect measures, or CI values are given for individual points; only approximate coordinates can be estimated visually. There is no tabular data for extraction as per forest plot schema.\",\n  \"rows\": []\n}",
+  "model_id": "claude-sonnet-5",
+  "input_tokens": 1853,
+  "output_tokens": 198
+}

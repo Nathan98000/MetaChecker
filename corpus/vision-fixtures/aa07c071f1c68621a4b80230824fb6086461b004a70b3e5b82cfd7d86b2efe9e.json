@@ -1,0 +1,6 @@
+{
+  "text": "{\"region_readable\": false, \"columns_seen\": [], \"axis_labels\": [], \"reading_notes\": \"The cropped region contains only the article header ('REVIEW', 'Open Access', partial article title 'Impact of physical activity on caloric...') and a 'Check for updates' badge. No forest plot or data figure is present.\", \"rows\": []}",
+  "model_id": "claude-fable-5",
+  "input_tokens": 1091,
+  "output_tokens": 143
+}

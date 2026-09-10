@@ -1,0 +1,22 @@
+analysis_id,outcome,timepoint,population,comparison,subgroup_of,effect_measure,model,n_studies_reported,pooled_effect,pooled_ci_lower,pooled_ci_upper,i2,tau2,q,p_value,source_page,source_figure,source_table,certainty,note
+MAC-OV-2014,Overall practice-performance,NOT_APPLICABLE,"88 studies / 111 samples / 157 effects / N=11,135",deliberate practice vs performance,,r (random-effects mean),RANDOM,157,.35,.30,.39,84.90,,,,8,,text p.1612,KNOWN,"version=AS_PUBLISHED; 12% variance explained [9%,15%]"
+MAC-OV-2018,Overall practice-performance,NOT_APPLICABLE,157 effects,deliberate practice vs performance,,r (random-effects mean),RANDOM,157,.38,.33,.42,88.54,,,,1,,corrigendum Table 1,KNOWN,"version=AS_CORRECTED; 14% variance [11%,18%]; also overlay text on PDF p.8"
+MAC-DOM-2014,Domain moderator omnibus,NOT_APPLICABLE,5 domains,,MAC-OV-2014,Q,RANDOM,5,Q(4) = 49.09,,,,,49.09,< .001,8,,text p.1612,KNOWN,version=AS_PUBLISHED
+MAC-DOM-2018,Domain moderator omnibus,NOT_APPLICABLE,5 domains,,MAC-OV-2018,Q,RANDOM,5,Q(4) = 36.61,,,,,36.61,< .001,1,,corrigendum Table 1,KNOWN,version=AS_CORRECTED
+MAC-GAMES-2014,Games,NOT_APPLICABLE,"11 effects / N=1,291",,MAC-DOM-2014,r,RANDOM,11,.51,,,,,,< .001,8,,text p.1612,KNOWN,AS_PUBLISHED; 26% variance
+MAC-GAMES-2018,Games,NOT_APPLICABLE,11 effects,,MAC-DOM-2018,r,RANDOM,11,.49,,,,,,< .001,1,,corrigendum Table 1,KNOWN,AS_CORRECTED; 24% variance
+MAC-MUSIC-2014,Music,NOT_APPLICABLE,"28 effects / N=1,259",,MAC-DOM-2014,r,RANDOM,28,.46,,,,,,< .001,8,,text p.1612,KNOWN,AS_PUBLISHED; 21%
+MAC-MUSIC-2018,Music,NOT_APPLICABLE,28 effects,,MAC-DOM-2018,r,RANDOM,28,.48,,,,,,< .001,1,,corrigendum Table 1,KNOWN,AS_CORRECTED; 23%
+MAC-SPORTS-2014,Sports,NOT_APPLICABLE,"60 effects / N=2,633",,MAC-DOM-2014,r,RANDOM,60,.42,,,,,,< .001,8,,text p.1612,KNOWN,AS_PUBLISHED; 18%
+MAC-SPORTS-2018,Sports,NOT_APPLICABLE,60 effects,,MAC-DOM-2018,r,RANDOM,60,.45,,,,,,< .001,1,,corrigendum Table 1,KNOWN,AS_CORRECTED; 20%
+MAC-EDU-2014,Education,NOT_APPLICABLE,"51 effects / N=5,631",,MAC-DOM-2014,r,RANDOM,51,.21,,,,,,< .001,8,,text p.1612,KNOWN,AS_PUBLISHED; 4%
+MAC-EDU-2018,Education,NOT_APPLICABLE,51 effects,,MAC-DOM-2018,r,RANDOM,51,.22,,,,,,< .001,1,,corrigendum Table 1,KNOWN,AS_CORRECTED; 5%
+MAC-PROF-2014,Professions,NOT_APPLICABLE,7 effects / N=321,,MAC-DOM-2014,r,RANDOM,7,.05,,,,,,= .62,8,,text p.1612,KNOWN,AS_PUBLISHED; < 1%
+MAC-PROF-2018,Professions,NOT_APPLICABLE,7 effects,,MAC-DOM-2018,r,RANDOM,7,.09,,,,,,= .377,1,,corrigendum Table 1,KNOWN,AS_CORRECTED; 1%
+MAC-PRED-2014,Predictability moderator,NOT_APPLICABLE,3 levels,,MAC-OV-2014,Q/meta-regression,RANDOM,3,Q(1) = 20.49,,,,,,< .001,8,,text p.1612,KNOWN,AS_PUBLISHED; b = 0.14; T2 = .05 (verbatim 'T2 = .05')
+MAC-PRED-2018,Predictability moderator,NOT_APPLICABLE,3 levels,,MAC-OV-2018,Q/meta-regression,RANDOM,3,Q(1) = 11.32,,,,,,< .001,2,,corrigendum Table 1,KNOWN,AS_CORRECTED; b = 0.12; T2 = .05 (verbatim 'T2 = .05')
+MAC-QMETH-2014,DP assessment method moderator,NOT_APPLICABLE,3 methods,,MAC-OV-2014,Q,RANDOM,3,Q(2) = 16.19,,,,,16.19,< .001,8,,text p.1612,KNOWN,AS_PUBLISHED
+MAC-QMETH-2018,DP assessment method moderator,NOT_APPLICABLE,3 methods,,MAC-OV-2018,Q,RANDOM,3,Q(2) = 18.18,,,,,18.18,< .001,2,,corrigendum Table 1,KNOWN,AS_CORRECTED
+MAC-PMETH-2014,Performance assessment method moderator,NOT_APPLICABLE,4 methods,,MAC-OV-2014,Q,RANDOM,4,Q(3) = 14.41,,,,,14.41,= .002,8,,text p.1612,KNOWN,AS_PUBLISHED
+MAC-PMETH-2018,Performance assessment method moderator,NOT_APPLICABLE,4 methods,,MAC-OV-2018,Q,RANDOM,4,Q(3) = 9.75,,,,,9.75,= .021,2,,corrigendum Table 1,KNOWN,AS_CORRECTED
+MAC-RELCORR-2014,Overall corrected for unreliability (rxx=ryy=.80),NOT_APPLICABLE,157 effects,,MAC-OV-2014,corrected r,RANDOM,157,.43,,,,,,,12,,text p.1616,KNOWN,AS_PUBLISHED only; not addressed by corrigendum; 19% of reliable variance

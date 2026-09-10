@@ -1,0 +1,7 @@
+{
+  "citation": "Yang R, Chang Q, Meng X, Gao N, Wang W (2018). Prognostic value of Systemic immune-inflammation index in cancer: A meta-analysis. J Cancer 9(18):3295-3302.",
+  "doi": "10.7150/jca.25691",
+  "oa_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6160683/",
+  "corpus_role": "development",
+  "rationale": "TTE/generic inverse-variance HR pooling; typeset forest-plot values; multi-cohort articles (mild dependency)."
+}

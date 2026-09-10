@@ -1,0 +1,6 @@
+{
+  "text": "```json\n{\n  \"region_readable\": true,\n  \"columns_seen\": [\"Protein\", \"Carbohydrates\", \"Fat\"],\n  \"axis_labels\": [\"% of studies\", \"0%\", \"10%\", \"20%\", \"30%\", \"40%\", \"50%\", \"60%\", \"70%\", \"80%\", \"90%\", \"100%\", \"\u2193\", \"\u2191\", \"\u2194\", \"NR\"],\n  \"reading_notes\": \"This is a stacked bar chart, not a forest plot. Each bar represents a macronutrient (Protein, Carbohydrates, Fat) and shows percentage of studies reporting a decrease (\u2193), increase (\u2191), no change (\u2194), or not reported (NR) in that nutrient. Values are estimated from bar segment boundaries.\",\n  \"rows\": [\n    {\n      \"row_kind\": \"OTHER\",\n      \"study_label\": \"Protein\",\n      \"note\": \"Stacked segments: \u2193 0%, \u2191 ~13%, \u2194 ~64% (13% to 77%), NR ~23% (77% to 100%)\"\n    },\n    {\n      \"row_kind\": \"OTHER\",\n      \"study_label\": \"Carbohydrates\",\n      \"note\": \"Stacked segments: \u2193 0%, \u2191 ~9%, \u2194 ~68% (9% to 77%), NR ~23% (77% to 100%)\"\n    },\n    {\n      \"row_kind\": \"OTHER\",\n      \"study_label\": \"Fat\",\n      \"note\": \"Stacked segments: \u2193 0%, \u2191 ~13%, \u2194 ~64% (13% to 77%), NR ~23% (77% to 100%)\"\n    }\n  ]\n}\n```",
+  "model_id": "claude-sonnet-5",
+  "input_tokens": 1992,
+  "output_tokens": 542
+}

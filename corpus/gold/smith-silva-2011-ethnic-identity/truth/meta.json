@@ -1,0 +1,7 @@
+{
+  "citation": "Smith TB, Silva L (2011). Ethnic identity and personal well-being of people of color: A meta-analysis. J Couns Psychol 58(1):42-60.",
+  "doi": "10.1037/a0021528",
+  "oa_url": "https://scholarsarchive.byu.edu/facpub/88",
+  "corpus_role": "holdout",
+  "rationale": "Third-party ground truth (Maassen et al. 2020, MA26) \u2014 no leakage from our truth conventions; 184-study appendix tables."
+}

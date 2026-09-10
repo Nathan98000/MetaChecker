@@ -1,0 +1,170 @@
+{
+  "run_at": "2026-08-13T14:58:19.377557+00:00",
+  "truth_state": "BENCHMARK_AGAINST_PREFREEZE_TRUTH",
+  "provider": "live",
+  "model_role": "OVERRIDE(COMPLEX_EXTRACTION_MODEL)",
+  "model_id": "claude-sonnet-5",
+  "prompt_version": "1",
+  "papers": [
+    {
+      "paper": "yang-2018-sii",
+      "truth_study_rows": 34,
+      "truth_pooled_rows": 6,
+      "extracted_study_rows": 56,
+      "matched": 34,
+      "label_exact": 34,
+      "numeric_exact": 34,
+      "ci_paired": 34,
+      "row_assembled": 34,
+      "pooled_misclassified": 0,
+      "false_extractions": 22,
+      "abstentions": 33,
+      "provenance_page_correct": 34,
+      "inappropriate_resolutions": 0,
+      "correct_abstentions": 0,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "by_region_kind": {
+        "RASTER_IMAGE": {
+          "rows": 72,
+          "regions": 6
+        }
+      },
+      "unmatched_truth_examples": [],
+      "false_extraction_examples": [
+        "Hong UNRESOLVED (p5)",
+        "Loll UNRESOLVED (p5)",
+        "Passardi UNRESOLVED (p5)",
+        "Liu UNRESOLVED (p5)",
+        "wang UNRESOLVED (p5)",
+        "Tong UNRESOLVED (p5)",
+        "Jin UNRESOLVED (p5)",
+        "Yu UNRESOLVED (p5)"
+      ],
+      "inappropriate_resolution_examples": [],
+      "cost_usd": 0.1554,
+      "latency_ms": 97305,
+      "calls": 6,
+      "stage_state": "SUCCESS"
+    },
+    {
+      "paper": "prochaska-2012-varenicline",
+      "truth_study_rows": 43,
+      "truth_pooled_rows": 2,
+      "extracted_study_rows": 44,
+      "matched": 43,
+      "label_exact": 43,
+      "numeric_exact": 43,
+      "ci_paired": 43,
+      "row_assembled": 43,
+      "pooled_misclassified": 2,
+      "false_extractions": 0,
+      "abstentions": 0,
+      "provenance_page_correct": 43,
+      "inappropriate_resolutions": 0,
+      "correct_abstentions": 0,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "by_region_kind": {
+        "RASTER_IMAGE": {
+          "rows": 48,
+          "regions": 3
+        }
+      },
+      "unmatched_truth_examples": [],
+      "false_extraction_examples": [],
+      "inappropriate_resolution_examples": [],
+      "cost_usd": 0.1374,
+      "latency_ms": 60146,
+      "calls": 3,
+      "stage_state": "SUCCESS"
+    },
+    {
+      "paper": "hahn-2024-exercise-intake",
+      "truth_study_rows": 72,
+      "truth_pooled_rows": 13,
+      "extracted_study_rows": 14,
+      "matched": 14,
+      "label_exact": 14,
+      "numeric_exact": 0,
+      "ci_paired": 8,
+      "row_assembled": 0,
+      "pooled_misclassified": 0,
+      "false_extractions": 0,
+      "abstentions": 0,
+      "provenance_page_correct": 0,
+      "inappropriate_resolutions": 0,
+      "correct_abstentions": 0,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "by_region_kind": {
+        "VECTOR_CLUSTER": {
+          "rows": 52,
+          "regions": 10
+        }
+      },
+      "unmatched_truth_examples": [
+        "Ajibewa 2017 NW 25% stretching 17.00 (p22)",
+        "Ajibewa 2017 NW 50% push-ups 73.00 (p22)",
+        "Ajibewa 2017 OB 25% -59.00 (p22)",
+        "Ajibewa 2017 OB 50% 79.00 (p22)",
+        "Bozinosvki 2009 NW 15min Treadmill 18.00 (p22)",
+        "Bozinosvki 2009 NW 45min Treadmill -23.00 (p22)",
+        "Fearnbach 2016 OB 45min cycling 79.00 (p22)",
+        "Fearnbach Silvert 2017 NW 45min cycling 110.00 (p22)"
+      ],
+      "false_extraction_examples": [],
+      "inappropriate_resolution_examples": [],
+      "cost_usd": 0.8754,
+      "latency_ms": 402193,
+      "calls": 16,
+      "stage_state": "PARTIAL_SUCCESS"
+    },
+    {
+      "paper": "driessen-2015-nih-psychotherapy",
+      "truth_study_rows": 89,
+      "truth_pooled_rows": 18,
+      "extracted_study_rows": 48,
+      "matched": 44,
+      "label_exact": 44,
+      "numeric_exact": 0,
+      "ci_paired": 0,
+      "row_assembled": 0,
+      "pooled_misclassified": 0,
+      "false_extractions": 4,
+      "abstentions": 4,
+      "provenance_page_correct": 24,
+      "inappropriate_resolutions": 0,
+      "correct_abstentions": 0,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "by_region_kind": {
+        "RASTER_IMAGE": {
+          "rows": 70,
+          "regions": 7
+        }
+      },
+      "unmatched_truth_examples": [
+        "[unnamed unpublished] 0.31 (p13)",
+        "O'Hara, 2000 1.14 (p13)",
+        "Rohan, 2007 1.01 (p13)",
+        "Strachowski, 2008 1.58 (p13)",
+        "Blum, unpublished 0.50 (p13)",
+        "Arean, 2010 0.39 (p14)",
+        "Barber, 2012 0.08 (p14)",
+        "DeRubeis, 2005 0.45 (p14)"
+      ],
+      "false_extraction_examples": [
+        "Blank 0,31 (p14)",
+        "Unpublished 0,44 (p14)",
+        "Unpublished -0,24 (p14)",
+        "Blank 0,56 (p15)"
+      ],
+      "inappropriate_resolution_examples": [],
+      "cost_usd": 0.577,
+      "latency_ms": 251249,
+      "calls": 11,
+      "stage_state": "PARTIAL_SUCCESS"
+    }
+  ]
+}

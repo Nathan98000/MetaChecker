@@ -1,0 +1,6 @@
+{
+  "text": "```json\n{\n  \"region_readable\": true,\n  \"columns_seen\": [\"Hunger\", \"Satiety\", \"Prospective food consumption\"],\n  \"axis_labels\": [\"% of studies\", \"0%\", \"10%\", \"20%\", \"30%\", \"40%\", \"50%\", \"60%\", \"70%\", \"80%\", \"90%\", \"100%\", \"\u2193\", \"\u2191\", \"\u2194\", \"NR\"],\n  \"reading_notes\": \"This is a stacked bar chart, not a forest plot. Each bar represents percentage of studies reporting increase, decrease, no change, or not reported for appetite measures. Values are estimated from visual proportions as no data labels are printed.\",\n  \"rows\": [\n    {\n      \"row_kind\": \"OTHER\",\n      \"study_label\": \"Hunger\",\n      \"note\": \"Stacked bar: \u2193 approximately 9%, \u2194 approximately 82%, NR approximately 9%. No \u2191 segment visible.\"\n    },\n    {\n      \"row_kind\": \"OTHER\",\n      \"study_label\": \"Satiety\",\n      \"note\": \"Stacked bar: \u2194 approximately 87%, NR approximately 13%. No \u2193 or \u2191 segments visible.\"\n    },\n    {\n      \"row_kind\": \"OTHER\",\n      \"study_label\": \"Prospective food consumption\",\n      \"note\": \"Stacked bar: \u2194 approximately 91%, NR approximately 9%. No \u2193 or \u2191 segments visible.\"\n    }\n  ]\n}\n```",
+  "model_id": "claude-sonnet-5",
+  "input_tokens": 2045,
+  "output_tokens": 480
+}

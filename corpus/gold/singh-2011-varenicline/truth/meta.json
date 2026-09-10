@@ -1,0 +1,7 @@
+{
+  "citation": "Singh S, Loke YK, Spangler JG, Furberg CD (2011). Risk of serious adverse cardiovascular events associated with varenicline. CMAJ 183(12):1359-1366.",
+  "doi": "10.1503/cmaj.110218",
+  "oa_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3168618/",
+  "corpus_role": "holdout",
+  "rationale": "Near-neighbor of development paper Prochaska 2012 \u2014 generalization test; Peto zero-event pathology."
+}
